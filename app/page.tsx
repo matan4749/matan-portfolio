@@ -34,6 +34,7 @@ export default function Home() {
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -95,31 +96,17 @@ export default function Home() {
         title: "RPA Developer",
         company: "HMS - Hospital Management Systems",
         description:
-          "פיתוח פתרונות אוטומציה RPA באמצעות UiPath, ייעול תהליכי עבודה ומערכות ניהול בית חולים.",
+          "Automated workflows and data processing systems using UiPath",
+        fullDescription:
+          "Designed and implemented 15+ automated workflows using UiPath, reducing manual processing time by 60% for data entry and reporting tasks. Built ETL pipelines processing 10,000+ records daily from multiple sources (Excel, databases, web services), achieving 95%+ reliability. Integrated Business Intelligence and Machine Learning tools into automation workflows for predictive analytics",
         icon: <Zap className="w-6 h-6" />,
-      },
-      {
-        year: "2020 - 2022",
-        title: "Software Engineer",
-        company: "HMS - Hospital Management Systems",
-        description:
-          "פיתוח מערכות ניהול בתי חולים עם C# ו-Python, שיפור תהליכי עבודה ואוטומציה.",
-        icon: <Code2 className="w-6 h-6" />,
-      },
-      {
-        year: "2020 - 2021",
-        title: "Game Developer",
-        company: "Educational Tech",
-        description:
-          "פיתוח משחקים חינוכיים ב-Unity עם התמקדות בנגישות וחינוך מיוחד.",
-        icon: <Layers className="w-6 h-6" />,
       },
       {
         year: "2015 - 2017",
         title: "Military Service",
         company: "IDF - Israel Defense Forces",
         description:
-          "שירות צבאי בצה\"ל, תפקידים טכנולוגיים ופיתוח יכולות ניהול ועבודת צוות.",
+          "Led communications team and awarded Commander's Excellence Award for exceptional leadership",
         icon: <User className="w-6 h-6" />,
       },
     ],
@@ -448,7 +435,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                     y: isVisible ? 0 : 20,
                   }}
                   transition={{ delay: 0.3 }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
                 >
                   <span className="gradient-text glow-text">Matan Amar</span>
                 </motion.h1>
@@ -460,7 +447,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                     y: isVisible ? 0 : 20,
                   }}
                   transition={{ delay: 0.4 }}
-                  className="text-2xl md:text-3xl text-cyan-400 font-semibold"
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-cyan-400 font-semibold"
                 >
                   {cvKnowledge.personalInfo.title}
                 </motion.p>
@@ -529,7 +516,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative w-80 h-80 lg:w-96 lg:h-96"
+                className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
               >
                 {/* Animated gradient border rings */}
                 <motion.div
@@ -615,13 +602,13 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
               Tech Stack
             </h2>
-            <p className="text-gray-400 text-lg">Technologies I work with</p>
+            <p className="text-gray-400 text-base md:text-lg">Technologies I work with</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
             {cvKnowledge.skills.map((skill, index) => (
               <motion.div
                 key={index}
@@ -630,7 +617,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all cursor-pointer group"
+                className="p-4 sm:p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all cursor-pointer group"
               >
                 <div className="flex flex-col items-center gap-4">
                   <div className="tech-icon">
@@ -660,10 +647,10 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
               Experience
             </h2>
-            <p className="text-gray-400 text-lg">My professional journey</p>
+            <p className="text-gray-400 text-base md:text-lg">My professional journey</p>
           </motion.div>
 
           <div className="space-y-8">
@@ -676,7 +663,18 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 transition={{ delay: index * 0.2 }}
                 className="relative"
               >
-                <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover">
+                <div
+                  className={`p-4 sm:p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover ${
+                    (exp as any).fullDescription ? "cursor-pointer" : ""
+                  }`}
+                  onClick={() => {
+                    if ((exp as any).fullDescription) {
+                      setExpandedExperience(
+                        expandedExperience === index ? null : index
+                      );
+                    }
+                  }}
+                >
                   <div className="flex flex-col md:flex-row gap-6">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
@@ -685,19 +683,54 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                     </div>
                     <div className="flex-1">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                        <h3 className="text-2xl font-bold text-white">
+                        <h3 className="text-xl md:text-2xl font-bold text-white">
                           {exp.title}
                         </h3>
-                        <span className="text-cyan-400 font-medium">
+                        <span className="text-cyan-400 font-medium text-sm md:text-base">
                           {exp.year}
                         </span>
                       </div>
-                      <div className="text-blue-400 font-semibold mb-3">
+                      <div className="text-blue-400 font-semibold mb-3 text-sm md:text-base">
                         {exp.company}
                       </div>
-                      <p className="text-gray-400 leading-relaxed hebrew-inline">
+                      <p className="text-gray-400 leading-relaxed text-sm md:text-base">
                         {exp.description}
                       </p>
+                      <AnimatePresence>
+                        {(exp as any).fullDescription &&
+                          expandedExperience === index && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+                                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                                  {(exp as any).fullDescription}
+                                </p>
+                              </div>
+                            </motion.div>
+                          )}
+                      </AnimatePresence>
+                      {(exp as any).fullDescription && (
+                        <div className="mt-3 text-cyan-400 text-sm flex items-center gap-2">
+                          <span>
+                            {expandedExperience === index
+                              ? "Click to collapse"
+                              : "Click to see more details"}
+                          </span>
+                          <motion.div
+                            animate={{
+                              rotate: expandedExperience === index ? 180 : 0,
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-4 h-4" />
+                          </motion.div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -716,13 +749,13 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
               Featured Projects
             </h2>
-            <p className="text-gray-400 text-lg">Some of my recent work</p>
+            <p className="text-gray-400 text-base md:text-lg">Some of my recent work</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {cvKnowledge.projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -732,7 +765,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 transition={{ delay: index * 0.2 }}
                 className="group"
               >
-                <div className="h-full p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover">
+                <div className="h-full p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover">
                   <div
                     className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} mb-6 flex items-center justify-center`}
                   >
@@ -773,10 +806,10 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-5xl md:text-6xl font-bold gradient-text">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text">
               Let's Work Together
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your vision.
             </p>
@@ -811,7 +844,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
         onClick={() => setIsChatOpen(!isChatOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/50 z-50"
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/50 z-50"
       >
         <MessageSquare className="w-8 h-8" />
       </motion.button>
@@ -823,7 +856,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-28 right-8 w-96 h-[500px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-4 sm:bottom-28 right-4 sm:right-8 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-6rem)] sm:h-[500px] max-h-[600px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 flex flex-col overflow-hidden"
           >
             {/* Chat Header */}
             <div className="p-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-b border-white/10 flex justify-between items-center">
