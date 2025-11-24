@@ -76,7 +76,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash-latest",
+      generationConfig: {
+        maxOutputTokens: 1000,
+      }
+    });
 
     const prompt = `${cvContext}\n\nUser question: ${message}\n\nProvide a helpful and friendly response:`;
 
