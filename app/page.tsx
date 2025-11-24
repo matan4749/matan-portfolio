@@ -156,7 +156,53 @@ export default function Home() {
     ],
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return;
+
+    const userMessageText = inputMessage.trim();
+    setMessages((prev) => [...prev, { role: "user", content: userMessageText }]);
+    setInputMessage("");
+
+    // Add loading message
+    setMessages((prev) => [
+      ...prev,
+      { role: "assistant", content: "מחשב תשובה..." },
+    ]);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userMessageText }),
+      });
+
+      const data = await response.json();
+
+      // Remove loading message and add AI response
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1] = {
+          role: "assistant",
+          content: data.response || data.error || "מצטער, לא הצלחתי לענות על השאלה",
+        };
+        return newMessages;
+      });
+    } catch (error) {
+      // Remove loading message and show error
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1] = {
+          role: "assistant",
+          content: "מצטער, אירעה שגיאה. נסה שוב.",
+        };
+        return newMessages;
+      });
+    }
+  };
+
+  const handleSendMessageOld = () => {
     if (!inputMessage.trim()) return;
 
     const userMessage = inputMessage.trim().toLowerCase();
@@ -996,7 +1042,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400">
-              &copy; 2024 {cvKnowledge.personalInfo.nameEn}. All rights
+              &copy; 2025 {cvKnowledge.personalInfo.nameEn}. All rights
               reserved.
             </div>
             <div className="flex items-center gap-6 text-gray-400">
