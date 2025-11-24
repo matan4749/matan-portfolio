@@ -35,6 +35,8 @@ export default function Home() {
   const [inputMessage, setInputMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const [expandedAbout, setExpandedAbout] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -49,13 +51,26 @@ export default function Home() {
       linkedin: "linkedin.com/in/matan--amar",
       github: "github.com/matan4749",
       title: "Software Engineer",
+      shortDescription:
+        "Building innovative applications with modern technologies",
+      fullDescription:
+        "Software engineer with BSc in Software Engineering and hands-on experience building mobile applications, web solutions, and automation systems. Proficient in React Native and Firebase with proven ability to deliver production-ready applications. Combines technical skills with strong problem-solving abilities and leadership experience from military service. Seeking junior developer role to contribute to innovative development teams",
     },
-    education: {
-      institution: "מכללה טכנולוגית",
-      degree: "הנדסת תוכנה",
-      year: "2020",
-      location: "ישראל",
-    },
+    education: [
+      {
+        institution: "Sami Shamoon College of Engineering (SCE)",
+        degree: "BSc Software Engineering",
+        details: "React Native",
+        year: "2018–2022",
+        location: "Israel",
+      },
+      {
+        institution: "Udemy",
+        degree: "Development",
+        year: "2021",
+        location: "Online",
+      },
+    ],
     skills: [
       { name: "C#", icon: "devicon-csharp-plain colored", category: "Backend" },
       {
@@ -112,24 +127,30 @@ export default function Home() {
     ],
     projects: [
       {
-        title: "ThinkWell",
+        title: "Room 8",
         description:
-          "משחק חינוכי מבוסס Unity המיועד לילדים אוטיסטים, כולל מודולי למידה אינטראקטיביים וממשק ידידותי לחושים.",
-        tech: ["Unity", "C#", "Game Development"],
+          "Cross-platform roommate matching mobile application",
+        fullDescription:
+          "Built cross-platform roommate matching app with Firebase Authentication and real-time synchronization. Implemented matching algorithm analyzing 15+ compatibility dimensions and integrated push notifications",
+        tech: ["React Native", "Firebase", "Mobile"],
         gradient: "from-cyan-500 to-blue-500",
       },
       {
-        title: "HMS - Hospital Management System",
+        title: "Schovid",
         description:
-          "פתרון אוטומציה RPA לייעול פעולות בית חולים, ניהול רשומות מטופלים ותהליכי עבודה אדמיניסטרטיביים.",
-        tech: ["UiPath", "C#", "Automation"],
+          "School management platform for students, parents, and teachers",
+        fullDescription:
+          "Created school management platform connecting students, parents, and teachers with role-based access control. Built features for schedules, grade tracking, assignments, and messaging with responsive UI for multiple devices",
+        tech: ["React", "Node.js", "MongoDB"],
         gradient: "from-blue-500 to-purple-500",
       },
       {
-        title: "8-Room",
+        title: "Renovations",
         description:
-          "אפליקציית מובייל React Native להזמנת ח דרים וניהול עם זמינות בזמן אמת וממשק ידידותי למשתמש.",
-        tech: ["React Native", "TypeScript", "Mobile"],
+          "Modern business website with responsive design",
+        fullDescription:
+          "Developed responsive business website with modern mobile-first design, interactive forms, and CSS Grid/Flexbox layouts",
+        tech: ["HTML5", "CSS3", "JavaScript"],
         gradient: "from-purple-500 to-pink-500",
       },
     ],
@@ -452,19 +473,33 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   {cvKnowledge.personalInfo.title}
                 </motion.p>
 
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{
                     opacity: isVisible ? 1 : 0,
                     y: isVisible ? 0 : 20,
                   }}
                   transition={{ delay: 0.5 }}
-                  className="text-lg text-gray-400 max-w-2xl leading-relaxed"
+                  className="max-w-2xl"
                 >
-                  Building innovative applications that bridge technology and human
-                  experience. Specialized in full-stack development, Unity game development,
-                  and automation solutions with C#, Python, and modern web technologies.
-                </motion.p>
+                  <p className="text-base md:text-lg text-gray-400 leading-relaxed">
+                    {expandedAbout
+                      ? cvKnowledge.personalInfo.fullDescription
+                      : cvKnowledge.personalInfo.shortDescription}
+                  </p>
+                  <button
+                    onClick={() => setExpandedAbout(!expandedAbout)}
+                    className="mt-3 text-cyan-400 text-sm hover:text-cyan-300 transition-colors flex items-center gap-2"
+                  >
+                    <span>{expandedAbout ? "Show less" : "Read more"}</span>
+                    <motion.div
+                      animate={{ rotate: expandedAbout ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </motion.div>
+                  </button>
+                </motion.div>
               </div>
 
               <motion.div
@@ -714,23 +749,6 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                             </motion.div>
                           )}
                       </AnimatePresence>
-                      {(exp as any).fullDescription && (
-                        <div className="mt-3 text-cyan-400 text-sm flex items-center gap-2">
-                          <span>
-                            {expandedExperience === index
-                              ? "Click to collapse"
-                              : "Click to see more details"}
-                          </span>
-                          <motion.div
-                            animate={{
-                              rotate: expandedExperience === index ? 180 : 0,
-                            }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <ChevronDown className="w-4 h-4" />
-                          </motion.div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -765,20 +783,46 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 transition={{ delay: index * 0.2 }}
                 className="group"
               >
-                <div className="h-full p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover">
+                <div
+                  className="h-full p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover cursor-pointer"
+                  onClick={() => {
+                    setExpandedProject(
+                      expandedProject === index ? null : index
+                    );
+                  }}
+                >
                   <div
                     className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} mb-6 flex items-center justify-center`}
                   >
                     <Database className="w-6 h-6 text-white" />
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-gray-400 mb-6 leading-relaxed hebrew-inline">
+                  <p className="text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
                     {project.description}
                   </p>
+
+                  <AnimatePresence>
+                    {(project as any).fullDescription &&
+                      expandedProject === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                          animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
+                          exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 mb-4">
+                            <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                              {(project as any).fullDescription}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                  </AnimatePresence>
 
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech, techIndex) => (
@@ -856,7 +900,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-4 sm:bottom-28 right-4 sm:right-8 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-6rem)] sm:h-[500px] max-h-[600px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-4 sm:bottom-28 sm:right-8 w-[calc(100vw-2rem)] sm:w-96 h-[70vh] sm:h-[500px] max-h-[500px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 flex flex-col overflow-hidden"
           >
             {/* Chat Header */}
             <div className="p-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-b border-white/10 flex justify-between items-center">
