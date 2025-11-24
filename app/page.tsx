@@ -47,7 +47,7 @@ export default function Home() {
       phone: "054-5993085",
       linkedin: "linkedin.com/in/matan--amar",
       github: "github.com/matan4749",
-      title: "Software Engineer & RPA Specialist",
+      title: "Software Engineer",
     },
     education: {
       institution: "מכללה טכנולוגית",
@@ -91,17 +91,17 @@ export default function Home() {
     ],
     experience: [
       {
-        year: "2023 - Present",
-        title: "RPA Specialist",
-        company: "Enterprise Solutions",
+        year: "2022 - 2023",
+        title: "RPA Developer",
+        company: "HMS - Hospital Management Systems",
         description:
-          "מפתח פתרונות אוטומציה חכמים באמצעות UiPath, מצמצם תהליכים ידניים ב-60%.",
+          "פיתוח פתרונות אוטומציה RPA באמצעות UiPath, ייעול תהליכי עבודה ומערכות ניהול בית חולים.",
         icon: <Zap className="w-6 h-6" />,
       },
       {
-        year: "2020 - 2023",
-        title: "Software Engineer - HMS",
-        company: "Hospital Management Systems",
+        year: "2020 - 2022",
+        title: "Software Engineer",
+        company: "HMS - Hospital Management Systems",
         description:
           "פיתוח מערכות ניהול בתי חולים עם C# ו-Python, שיפור תהליכי עבודה ואוטומציה.",
         icon: <Code2 className="w-6 h-6" />,
@@ -113,6 +113,14 @@ export default function Home() {
         description:
           "פיתוח משחקים חינוכיים ב-Unity עם התמקדות בנגישות וחינוך מיוחד.",
         icon: <Layers className="w-6 h-6" />,
+      },
+      {
+        year: "2015 - 2017",
+        title: "Military Service",
+        company: "IDF - Israel Defense Forces",
+        description:
+          "שירות צבאי בצה\"ל, תפקידים טכנולוגיים ופיתוח יכולות ניהול ועבודת צוות.",
+        icon: <User className="w-6 h-6" />,
       },
     ],
     projects: [
@@ -466,10 +474,9 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   transition={{ delay: 0.5 }}
                   className="text-lg text-gray-400 max-w-2xl leading-relaxed"
                 >
-                  Crafting intelligent automation solutions and building
-                  innovative applications that bridge technology and human
-                  experience. Specialized in RPA, Unity game development, and
-                  full-stack engineering.
+                  Building innovative applications that bridge technology and human
+                  experience. Specialized in full-stack development, Unity game development,
+                  and automation solutions with C#, Python, and modern web technologies.
                 </motion.p>
               </div>
 
@@ -545,18 +552,13 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
 
                 {/* Profile image container with glow */}
                 <div className="absolute inset-2 rounded-full overflow-hidden bg-gradient-to-br from-cyan-500/20 to-purple-500/20 backdrop-blur-sm profile-glow">
-                  {/* Check if profile image exists, otherwise show placeholder */}
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-blue-500/10">
-                    <User className="w-32 h-32 text-cyan-400/50" />
-                  </div>
-                  {/* Uncomment when you add your profile image to public/profile.jpg or profile.png */}
-                  {/* <Image
+                  <Image
                     src="/profile.jpg"
                     alt="Matan Amar Profile"
                     fill
                     className="object-cover"
                     priority
-                  /> */}
+                  />
                 </div>
 
                 {/* Floating decorative elements */}
