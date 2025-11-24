@@ -1,11 +1,11 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-const genAI = new GoogleGenerativeAI(
-  process.env.GOOGLE_API_KEY || ""
-);
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY || "",
+});
 
 const cvContext = `
 You are an AI assistant for Matan Amar's portfolio website. Answer questions about his professional background in a friendly and helpful manner.
@@ -69,27 +69,32 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json();
 
-    if (!process.env.GOOGLE_API_KEY) {
+    if (!process.env.GROQ_API_KEY) {
       return NextResponse.json(
         { error: "API key not configured" },
         { status: 500 }
       );
     }
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash-latest",
-      generationConfig: {
-        maxOutputTokens: 1000,
-      }
+    const completion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: cvContext,
+        },
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+      model: "llama-3.1-70b-versatile",
+      temperature: 0.7,
+      max_tokens: 1000,
     });
 
-    const prompt = `${cvContext}\n\nUser question: ${message}\n\nProvide a helpful and friendly response:`;
+    const responseText = completion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-
-    return NextResponse.json({ response: text });
+    return NextResponse.json({ response: responseText });
   } catch (error: any) {
     console.error("Chat API error:", error);
     return NextResponse.json(
