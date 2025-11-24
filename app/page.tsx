@@ -253,7 +253,16 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
         userMessage.includes("study") ||
         userMessage.includes("education")
       ) {
-        response = `למדתי ${cvKnowledge.education.degree} ב${cvKnowledge.education.institution}.\n\nסיימתי את הלימודים בשנת ${cvKnowledge.education.year}. 🎓\n\nהלימודים כללו קורסים ב-C#, Python, פיתוח משחקים, פיתוח web ועוד.`;
+        response =
+          `ההשכלה שלי כוללת:\n\n` +
+          cvKnowledge.education
+            .map(
+              (edu) =>
+                `🎓 ${edu.degree}\n${edu.institution} | ${edu.year}${
+                  edu.details ? `\nהתמקדות: ${edu.details}` : ""
+                }\n`
+            )
+            .join("\n");
       }
 
       // איפה למדת
@@ -261,7 +270,11 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
         userMessage.includes("איפה למד") ||
         userMessage.includes("where study")
       ) {
-        response = `למדתי ב${cvKnowledge.education.institution}, ${cvKnowledge.education.location}.\n\nהתמחות: ${cvKnowledge.education.degree} 🎓`;
+        response =
+          `למדתי במוסדות הבאים:\n\n` +
+          cvKnowledge.education
+            .map((edu) => `📍 ${edu.institution}, ${edu.location}`)
+            .join("\n");
       }
 
       // באיזו שנה סיימת
@@ -270,7 +283,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
         userMessage.includes("מתי") ||
         userMessage.includes("when")
       ) {
-        response = `סיימתי את הלימודים בשנת ${cvKnowledge.education.year}.\n\nמאז אני עובד בתחום הפיתוח והאוטומציה! 💼`;
+        response = `סיימתי את הלימודים ב-${cvKnowledge.education[0].year}.\n\nמאז אני עובד בתחום הפיתוח והאוטומציה! 💼`;
       }
 
       // מי אתה
