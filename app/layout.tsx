@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rubik } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,24 @@ const rubik = Rubik({
 export const metadata: Metadata = {
   title: "Matan Amar - Software Engineer & RPA Specialist",
   description: "Portfolio of Matan Amar - Software Engineer specializing in RPA, Unity development, and full-stack applications.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Matan Amar",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Matan Amar Portfolio",
+    title: "Matan Amar - Software Engineer & RPA Specialist",
+    description: "Portfolio of Matan Amar - Software Engineer specializing in RPA, Unity development, and full-stack applications.",
+  },
+  icons: {
+    icon: '/icon.jpg',
+    apple: '/apple-icon.jpg',
+  },
 };
 
 export default function RootLayout({
@@ -36,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

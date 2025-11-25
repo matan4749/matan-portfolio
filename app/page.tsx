@@ -17,30 +17,43 @@ import {
   Layers,
   Zap,
   User,
+  Download,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useLanguage } from "../contexts/LanguageContext";
+import LanguageToggle from "../components/LanguageToggle";
+import TypingIndicator from "../components/TypingIndicator";
 
 export default function Home() {
+  const { language, t } = useLanguage();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<
-    Array<{ role: "user" | "assistant"; content: string }>
-  >([
-    {
-      role: "assistant",
-      content:
-        "היי! 👋\n\nאני מתן עמר, מפתח תוכנה ומומחה RPA.\nשמח שהגעתם לאתר שלי!\n\nתרגישו חופשי לשאול אותי כל שאלה:\n• על הניסיון המקצועי שלי\n• על הפרויקטים שפיתחתי\n• על הכישורים הטכנולוגיים שלי\n• על ההשכלה והלימודים שלי\n• פרטי קשר ומידע נוסף\n\nמה תרצו לדעת? 😊",
-    },
-  ]);
+    Array<{ role: "user" | "assistant"; content: string | "typing" }>
+  >([]);
   const [inputMessage, setInputMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [expandedAbout, setExpandedAbout] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    // Set initial chat message in current language
+    if (t("chat.initialMessage")) {
+      setMessages([
+        {
+          role: "assistant",
+          content: t("chat.initialMessage"),
+        },
+      ]);
+    }
+  }, [language, t]);
 
   const cvKnowledge = {
     personalInfo: {
@@ -108,50 +121,592 @@ export default function Home() {
     experience: [
       {
         year: "2022 - 2023",
-        title: "RPA Developer",
-        company: "HMS - Hospital Management Systems",
-        description:
-          "Automated workflows and data processing systems using UiPath",
-        fullDescription:
-          "Designed and implemented 15+ automated workflows using UiPath, reducing manual processing time by 60% for data entry and reporting tasks. Built ETL pipelines processing 10,000+ records daily from multiple sources (Excel, databases, web services), achieving 95%+ reliability. Integrated Business Intelligence and Machine Learning tools into automation workflows for predictive analytics",
+        title: { en: "RPA Developer", he: "מפתח RPA" },
+        company: { en: "HMS - Hospital Management Systems", he: "HMS - מערכות לניהול בתי חולים" },
+        description: {
+          en: "Automated workflows and data processing systems using UiPath",
+          he: "פיתוח זרימות עבודה אוטומטיות ומערכות עיבוד נתונים באמצעות UiPath"
+        },
+        fullDescription: {
+          en: "Designed and implemented 15+ automated workflows using UiPath, reducing manual processing time by 60% for data entry and reporting tasks. Built ETL pipelines processing 10,000+ records daily from multiple sources (Excel, databases, web services), achieving 95%+ reliability. Integrated Business Intelligence and Machine Learning tools into automation workflows for predictive analytics",
+          he: "תכננתי ויישמתי למעלה מ-15 זרימות עבודה אוטומטיות באמצעות UiPath, והפחתתי את זמן העיבוד הידני ב-60% עבור משימות הזנת נתונים ודיווח. בניתי צינורות ETL שמעבדים למעלה מ-10,000 רשומות יומיות ממקורות מרובים (Excel, מסדי נתונים, שירותי אינטרנט), והשגתי אמינות של 95%+. שילבתי כלי Business Intelligence ו-Machine Learning בזרימות אוטומציה לניתוחים חזויים"
+        },
         icon: <Zap className="w-6 h-6" />,
       },
       {
         year: "2015 - 2017",
-        title: "Military Service",
-        company: "IDF - Israel Defense Forces",
-        description:
-          "Led communications team and awarded Commander's Excellence Award for exceptional leadership",
+        title: { en: "Military Service", he: "שירות צבאי" },
+        company: { en: "IDF - Israel Defense Forces", he: "צה״ל - צבא הגנה לישראל" },
+        description: {
+          en: "Led communications team and awarded Commander's Excellence Award for exceptional leadership",
+          he: "הובלתי צוות תקשורת וקיבלתי פרס מצוינות מפקד על מנהיגות יוצאת דופן"
+        },
         icon: <User className="w-6 h-6" />,
       },
     ],
     projects: [
       {
         title: "Room 8",
-        description:
-          "Cross-platform roommate matching mobile application",
-        fullDescription:
-          "Built cross-platform roommate matching app with Firebase Authentication and real-time synchronization. Implemented matching algorithm analyzing 15+ compatibility dimensions and integrated push notifications",
-        tech: ["React Native", "Firebase", "Mobile"],
+        description: {
+          en: "Cross-platform roommate matching mobile application",
+          he: "אפליקציית מובייל להתאמת שותפים לדירה"
+        },
+        fullDescription: {
+          en: "Built cross-platform roommate matching app with Firebase Authentication and real-time synchronization. Implemented matching algorithm analyzing 15+ compatibility dimensions and integrated push notifications",
+          he: "בניתי אפליקציה חוצת פלטפורמות להתאמת שותפים לדירה עם אימות Firebase וסנכרון בזמן אמת. יישמתי אלגוריתם התאמה שמנתח למעלה מ-15 ממדי תאימות ושילבתי התראות push"
+        },
+        tech: ["React Native", "Firebase", "Git"],
         gradient: "from-cyan-500 to-blue-500",
+        github: "https://github.com/matan4749/Room-8",
+        featured: true,
       },
       {
         title: "Schovid",
-        description:
-          "School management platform for students, parents, and teachers",
-        fullDescription:
-          "Created school management platform connecting students, parents, and teachers with role-based access control. Built features for schedules, grade tracking, assignments, and messaging with responsive UI for multiple devices",
-        tech: ["React", "Node.js", "MongoDB"],
+        description: {
+          en: "School management platform for students, parents, and teachers",
+          he: "פלטפורמת ניהול בית ספר לתלמידים, הורים ומורים"
+        },
+        fullDescription: {
+          en: "Created school management platform connecting students, parents, and teachers with role-based access control. Built features for schedules, grade tracking, assignments, and messaging with responsive UI for multiple devices",
+          he: "יצרתי פלטפורמת ניהול בית ספר שמחברת תלמידים, הורים ומורים עם בקרת גישה מבוססת תפקידים. בניתי תכונות למערכת שעות, מעקב ציונים, מטלות והודעות עם ממשק משתמש רספונסיבי למספר מכשירים"
+        },
+        tech: ["React", "Node.js", "MongoDB", "Git"],
         gradient: "from-blue-500 to-purple-500",
+        github: "https://github.com/matan4749/Schovid",
+        featured: true,
       },
       {
         title: "Renovations",
-        description:
-          "Modern business website with responsive design",
-        fullDescription:
-          "Developed responsive business website with modern mobile-first design, interactive forms, and CSS Grid/Flexbox layouts",
-        tech: ["HTML5", "CSS3", "JavaScript"],
+        description: {
+          en: "Modern business website with responsive design",
+          he: "אתר עסקי מודרני עם עיצוב רספונסיבי"
+        },
+        fullDescription: {
+          en: "Developed responsive business website with modern mobile-first design, interactive forms, and CSS Grid/Flexbox layouts",
+          he: "פיתחתי אתר עסקי רספונסיבי עם עיצוב מודרני המותאם למובייל, טפסים אינטראקטיביים ופריסות CSS Grid/Flexbox"
+        },
+        tech: ["HTML5", "CSS3", "JavaScript", "Git"],
         gradient: "from-purple-500 to-pink-500",
+        github: "https://github.com/matan4749/Renovations",
+        featured: true,
+      },
+      // C# Projects
+      {
+        title: "Task Manager Pro",
+        description: {
+          en: "Desktop task management application with WPF",
+          he: "אפליקציית ניהול משימות לשולחן עבודה"
+        },
+        fullDescription: {
+          en: "Built desktop task manager using C# and WPF with MVVM pattern, SQL database integration, and task scheduling features",
+          he: "בניתי מנהל משימות לשולחן עבודה באמצעות C# ו-WPF עם תבנית MVVM, אינטגרציה עם מסד נתונים SQL ותכונות תזמון משימות"
+        },
+        tech: ["C#", "Git"],
+        gradient: "from-green-500 to-teal-500",
+        github: "https://github.com/matan4749/TaskManagerPro",
+        featured: false,
+      },
+      {
+        title: "REST API Service",
+        description: {
+          en: "RESTful API built with ASP.NET Core",
+          he: "שירות API RESTful עם ASP.NET Core"
+        },
+        fullDescription: {
+          en: "Developed production-ready REST API using ASP.NET Core with JWT authentication, Entity Framework, and comprehensive error handling",
+          he: "פיתחתי REST API מוכן לייצור באמצעות ASP.NET Core עם אימות JWT, Entity Framework וטיפול שגיאות מקיף"
+        },
+        tech: ["C#", "Git"],
+        gradient: "from-teal-500 to-cyan-500",
+        github: "https://github.com/matan4749/RestApiService",
+        featured: false,
+      },
+      {
+        title: "File Organizer",
+        description: {
+          en: "Automated file organization utility",
+          he: "כלי ארגון קבצים אוטומטי"
+        },
+        fullDescription: {
+          en: "Created C# console application for automated file organization based on rules, file types, and metadata with scheduling support",
+          he: "יצרתי אפליקציית קונסול ב-C# לארגון קבצים אוטומטי על בסיס כללים, סוגי קבצים ומטא-דאטה עם תמיכה בתזמון"
+        },
+        tech: ["C#", "Git"],
+        gradient: "from-cyan-500 to-blue-500",
+        github: "https://github.com/matan4749/FileOrganizer",
+        featured: false,
+      },
+      {
+        title: "Weather Desktop App",
+        description: {
+          en: "Real-time weather forecast application",
+          he: "אפליקציית תחזית מזג אוויר בזמן אמת"
+        },
+        fullDescription: {
+          en: "Built desktop weather application using C# WinForms with API integration, location-based forecasts, and visual weather data representation",
+          he: "בניתי אפליקציית מזג אוויר לשולחן עבודה באמצעות C# WinForms עם אינטגרציה ל-API, תחזיות מבוססות מיקום והצגה ויזואלית של נתוני מזג אוויר"
+        },
+        tech: ["C#", "Git"],
+        gradient: "from-blue-500 to-indigo-500",
+        github: "https://github.com/matan4749/WeatherDesktopApp",
+        featured: false,
+      },
+      {
+        title: "Inventory Management",
+        description: {
+          en: "Inventory tracking system for businesses",
+          he: "מערכת ניהול מלאי לעסקים"
+        },
+        fullDescription: {
+          en: "Developed comprehensive inventory management system with C# and SQL Server featuring barcode scanning, reports, and low-stock alerts",
+          he: "פיתחתי מערכת ניהול מלאי מקיפה עם C# ו-SQL Server הכוללת סריקת ברקוד, דוחות והתראות על מלאי נמוך"
+        },
+        tech: ["C#", "Git"],
+        gradient: "from-indigo-500 to-purple-500",
+        github: "https://github.com/matan4749/InventoryManagement",
+        featured: false,
+      },
+      // Python Projects
+      {
+        title: "Stock Market Analyzer",
+        description: {
+          en: "Professional stock market analysis with technical indicators",
+          he: "ניתוח שוק המניות מקצועי עם אינדיקטורים טכניים"
+        },
+        fullDescription: {
+          en: "Built professional stock market analysis tool using Python with pandas, matplotlib, and seaborn. Features technical indicators (MA, RSI), volatility analysis, and comprehensive visualizations including candlestick charts and volume analysis",
+          he: "בניתי כלי ניתוח שוק מניות מקצועי באמצעות Python עם pandas, matplotlib ו-seaborn. כולל אינדיקטורים טכניים (MA, RSI), ניתוח תנודתיות וויזואליזציות מקיפות כולל גרפי נרות וניתוח נפח מסחר"
+        },
+        tech: ["Python", "pandas", "matplotlib", "Git"],
+        gradient: "from-yellow-500 to-orange-500",
+        github: "https://github.com/matan4749/stock-market-analyzer",
+        featured: true,
+      },
+      {
+        title: "Task Management API",
+        description: {
+          en: "REST API with FastAPI for task management",
+          he: "REST API עם FastAPI לניהול משימות"
+        },
+        fullDescription: {
+          en: "Created professional REST API using FastAPI and SQLite with full CRUD operations, filtering, pagination, sorting, and statistics. Includes Pydantic validation, async operations, and comprehensive documentation",
+          he: "יצרתי REST API מקצועי באמצעות FastAPI ו-SQLite עם פעולות CRUD מלאות, סינון, עימוד, מיון וסטטיסטיקות. כולל ולידציה עם Pydantic, פעולות אסינכרוניות ותיעוד מקיף"
+        },
+        tech: ["Python", "FastAPI", "SQLite", "Git"],
+        gradient: "from-orange-500 to-red-500",
+        github: "https://github.com/matan4749/task-management-api",
+        featured: true,
+      },
+      {
+        title: "Email Automation Tool",
+        description: {
+          en: "Professional email automation with templates and bulk sending",
+          he: "אוטומציה מקצועית של אימייל עם תבניות ושליחה המונית"
+        },
+        fullDescription: {
+          en: "Developed email automation system with SMTP, Jinja2 templates, personalization, bulk sending from CSV, and delivery tracking. Perfect for marketing campaigns and professional communications",
+          he: "פיתחתי מערכת אוטומציה לאימייל עם SMTP, תבניות Jinja2, התאמה אישית, שליחה המונית מ-CSV ומעקב אחר משלוח. מושלם לקמפיינים שיווקיים ותקשורת מקצועית"
+        },
+        tech: ["Python", "SMTP", "Jinja2", "Git"],
+        gradient: "from-red-500 to-pink-500",
+        github: "https://github.com/matan4749/email-automation-tool",
+        featured: true,
+      },
+      {
+        title: "Image Processing Studio",
+        description: {
+          en: "Image processing library with 20+ filters and batch operations",
+          he: "ספריית עיבוד תמונות עם למעלה מ-20 פילטרים ופעולות אצווה"
+        },
+        fullDescription: {
+          en: "Built comprehensive image processing library using PIL/Pillow with 20+ filters (resize, crop, rotate, blur, sharpen, grayscale, posterize, solarize, etc.), watermarking, and batch processing capabilities",
+          he: "בניתי ספריית עיבוד תמונות מקיפה באמצעות PIL/Pillow עם למעלה מ-20 פילטרים (שינוי גודל, חיתוך, סיבוב, טשטוש, חידוד, גווני אפור, posterize, solarize ועוד), סימון מים ויכולות עיבוד אצווה"
+        },
+        tech: ["Python", "PIL/Pillow", "Git"],
+        gradient: "from-pink-500 to-purple-500",
+        github: "https://github.com/matan4749/image-processing-studio",
+        featured: true,
+      },
+      {
+        title: "Password Manager CLI",
+        description: {
+          en: "Secure password manager with AES-256 encryption",
+          he: "מנהל סיסמאות מאובטח עם הצפנת AES-256"
+        },
+        fullDescription: {
+          en: "Created secure password manager with AES-256 encryption, PBKDF2 key derivation (100k iterations), password generation, strength checking, and secure CLI interface. Master password with timeout protection",
+          he: "יצרתי מנהל סיסמאות מאובטח עם הצפנת AES-256, גזירת מפתח PBKDF2 (100k איטרציות), יצירת סיסמאות, בדיקת חוזק וממשק CLI מאובטח. סיסמת אב עם הגנת timeout"
+        },
+        tech: ["Python", "Cryptography", "CLI", "Git"],
+        gradient: "from-purple-500 to-indigo-500",
+        github: "https://github.com/matan4749/password-manager-cli",
+        featured: true,
+      },
+      // React Native Projects
+      {
+        title: "Expense Tracker",
+        description: {
+          en: "Personal finance management app",
+          he: "אפליקציית ניהול פיננסי אישי"
+        },
+        fullDescription: {
+          en: "Developed expense tracking app with React Native featuring budget planning, expense categorization, and visual spending analytics",
+          he: "פיתחתי אפליקציית מעקב הוצאות עם React Native הכוללת תכנון תקציב, קיטלוג הוצאות וניתוח חזותי של הוצאות"
+        },
+        tech: ["React Native", "Firebase", "Git"],
+        gradient: "from-emerald-500 to-green-500",
+        github: "https://github.com/matan4749/ExpenseTracker",
+        featured: false,
+      },
+      {
+        title: "Fitness Tracker",
+        description: {
+          en: "Workout and nutrition tracking application",
+          he: "אפליקציית מעקב אימונים ותזונה"
+        },
+        fullDescription: {
+          en: "Built fitness app using React Native with workout logging, progress tracking, meal planning, and integration with health APIs",
+          he: "בניתי אפליקציית כושר עם React Native הכוללת רישום אימונים, מעקב התקדמות, תכנון ארוחות ואינטגרציה עם APIs של בריאות"
+        },
+        tech: ["React Native", "Firebase", "Git"],
+        gradient: "from-green-500 to-lime-500",
+        github: "https://github.com/matan4749/FitnessTracker",
+        featured: false,
+      },
+      {
+        title: "Recipe Collection",
+        description: {
+          en: "Recipe discovery and cooking app",
+          he: "אפליקציית גילוי מתכונים ובישול"
+        },
+        fullDescription: {
+          en: "Created recipe app with React Native featuring recipe search, favorites, shopping lists, and step-by-step cooking instructions",
+          he: "יצרתי אפליקציית מתכונים עם React Native הכוללת חיפוש מתכונים, מועדפים, רשימות קניות והוראות בישול צעד-אחר-צעד"
+        },
+        tech: ["React Native", "Firebase", "Git"],
+        gradient: "from-lime-500 to-yellow-500",
+        github: "https://github.com/matan4749/RecipeCollection",
+        featured: false,
+      },
+      {
+        title: "Notes App",
+        description: {
+          en: "Modern note-taking application",
+          he: "אפליקציה מודרנית לרישום הערות"
+        },
+        fullDescription: {
+          en: "Developed note-taking app using React Native with markdown support, cloud sync, tags, and powerful search functionality",
+          he: "פיתחתי אפליקציית רישום הערות באמצעות React Native עם תמיכה ב-markdown, סנכרון ענן, תגיות ופונקציונליות חיפוש חזקה"
+        },
+        tech: ["React Native", "Firebase", "Git"],
+        gradient: "from-amber-500 to-orange-500",
+        github: "https://github.com/matan4749/NotesApp",
+        featured: false,
+      },
+      // React Projects
+      {
+        title: "ShopHub - E-commerce Store",
+        description: {
+          en: "Modern e-commerce application with shopping cart and checkout",
+          he: "אפליקציית מסחר אלקטרוני מודרנית עם עגלת קניות ותהליך תשלום"
+        },
+        fullDescription: {
+          en: "Built professional e-commerce application with React 18, featuring shopping cart management, product filtering by category, checkout flow, and persistent storage. Includes 12+ products, cart state with Context API, toast notifications, and responsive design. Complete with order summary, shipping forms, and payment simulation",
+          he: "בניתי אפליקציית מסחר אלקטרוני מקצועית עם React 18, הכוללת ניהול עגלת קניות, סינון מוצרים לפי קטגוריה, תהליך תשלום ואחסון מתמשך. כולל למעלה מ-12 מוצרים, מצב עגלה עם Context API, התראות toast ועיצוב רספונסיבי. מלא עם סיכום הזמנה, טפסי משלוח וסימולציית תשלום"
+        },
+        tech: ["React", "Vite", "React Router", "Context API", "Git"],
+        gradient: "from-blue-500 to-cyan-500",
+        github: "https://github.com/matan4749/react-ecommerce-store",
+        featured: true,
+      },
+      {
+        title: "Blog Platform",
+        description: {
+          en: "Content management and blogging system",
+          he: "מערכת ניהול תוכן ובלוגים"
+        },
+        fullDescription: {
+          en: "Created blog platform using React with rich text editor, comments system, tags, categories, and SEO optimization",
+          he: "יצרתי פלטפורמת בלוג באמצעות React עם עורך טקסט עשיר, מערכת תגובות, תגיות, קטגוריות ואופטימיזציה ל-SEO"
+        },
+        tech: ["React", "Node.js", "MongoDB", "Git"],
+        gradient: "from-cyan-500 to-teal-500",
+        github: "https://github.com/matan4749/BlogPlatform",
+        featured: false,
+      },
+      {
+        title: "Dashboard Analytics",
+        description: {
+          en: "Data visualization dashboard",
+          he: "לוח מחוונים לויזואליזציה של נתונים"
+        },
+        fullDescription: {
+          en: "Developed analytics dashboard with React and Chart.js featuring interactive charts, real-time data updates, and customizable widgets",
+          he: "פיתחתי לוח מחוונים לניתוח נתונים עם React ו-Chart.js הכולל גרפים אינטראקטיביים, עדכוני נתונים בזמן אמת וווידג'טים הניתנים להתאמה אישית"
+        },
+        tech: ["React", "JavaScript", "Git"],
+        gradient: "from-teal-500 to-green-500",
+        github: "https://github.com/matan4749/DashboardAnalytics",
+        featured: false,
+      },
+      {
+        title: "Chat Application",
+        description: {
+          en: "Real-time messaging platform",
+          he: "פלטפורמת הודעות בזמן אמת"
+        },
+        fullDescription: {
+          en: "Built real-time chat application using React and WebSockets with private messages, group chats, file sharing, and emoji support",
+          he: "בניתי אפליקציית צ'אט בזמן אמת באמצעות React ו-WebSockets עם הודעות פרטיות, צ'אטים קבוצתיים, שיתוף קבצים ותמיכה באימוג'ים"
+        },
+        tech: ["React", "Node.js", "Git"],
+        gradient: "from-green-500 to-emerald-500",
+        github: "https://github.com/matan4749/ChatApplication",
+        featured: false,
+      },
+      // Unity Projects
+      {
+        title: "2D Platformer Game",
+        description: {
+          en: "Classic platform jumping game",
+          he: "משחק פלטפורמות קפיצות קלאסי"
+        },
+        fullDescription: {
+          en: "Created 2D platformer using Unity with physics-based movement, level design, collectibles, and enemy AI",
+          he: "יצרתי משחק פלטפורמות 2D באמצעות Unity עם תנועה מבוססת פיזיקה, עיצוב שלבים, פריטים לאיסוף ו-AI של אויבים"
+        },
+        tech: ["Unity", "C#", "Git"],
+        gradient: "from-purple-500 to-pink-500",
+        github: "https://github.com/matan4749/2DPlatformerGame",
+        featured: false,
+      },
+      {
+        title: "Puzzle Match Game",
+        description: {
+          en: "Match-3 puzzle game mechanics",
+          he: "מכניקת משחק פאזל match-3"
+        },
+        fullDescription: {
+          en: "Developed match-3 puzzle game in Unity with combo system, power-ups, level progression, and save system",
+          he: "פיתחתי משחק פאזל match-3 ב-Unity עם מערכת קומבו, כוחות מיוחדים, התקדמות שלבים ומערכת שמירה"
+        },
+        tech: ["Unity", "C#", "Git"],
+        gradient: "from-pink-500 to-rose-500",
+        github: "https://github.com/matan4749/PuzzleMatchGame",
+        featured: false,
+      },
+      {
+        title: "AR Experience",
+        description: {
+          en: "Augmented reality demonstration",
+          he: "הדגמת מציאות רבודה"
+        },
+        fullDescription: {
+          en: "Built AR application using Unity and ARCore with 3D object placement, plane detection, and interactive AR elements",
+          he: "בניתי אפליקציית AR באמצעות Unity ו-ARCore עם מיקום אובייקטים תלת-ממדיים, זיהוי משטחים ואלמנטים אינטראקטיביים"
+        },
+        tech: ["Unity", "C#", "Git"],
+        gradient: "from-rose-500 to-red-500",
+        github: "https://github.com/matan4749/ARExperience",
+        featured: false,
+      },
+      {
+        title: "Tower Defense",
+        description: {
+          en: "Strategic tower defense game",
+          he: "משחק אסטרטגיית הגנת מגדלים"
+        },
+        fullDescription: {
+          en: "Created tower defense game in Unity with multiple tower types, enemy waves, upgrade system, and strategic map design",
+          he: "יצרתי משחק הגנת מגדלים ב-Unity עם סוגי מגדלים מרובים, גלי אויבים, מערכת שדרוגים ועיצוב מפה אסטרטגי"
+        },
+        tech: ["Unity", "C#", "Git"],
+        gradient: "from-red-500 to-orange-500",
+        github: "https://github.com/matan4749/TowerDefense",
+        featured: false,
+      },
+      {
+        title: "3D Racing Game",
+        description: {
+          en: "High-speed racing simulator",
+          he: "סימולטור מרוצים במהירות גבוהה"
+        },
+        fullDescription: {
+          en: "Developed 3D racing game using Unity with realistic physics, multiple vehicles, tracks, and multiplayer support",
+          he: "פיתחתי משחק מרוצים תלת-ממדי באמצעות Unity עם פיזיקה ריאליסטית, רכבים מרובים, מסלולים ותמיכה במשחק רב-משתתפים"
+        },
+        tech: ["Unity", "C#", "Git"],
+        gradient: "from-orange-500 to-amber-500",
+        github: "https://github.com/matan4749/3DRacingGame",
+        featured: false,
+      },
+      // HTML5/JavaScript Projects - NEW PROFESSIONAL PROJECTS
+      {
+        title: "Calculator JS",
+        description: {
+          en: "Simple calculator with arithmetic operations",
+          he: "מחשבון פשוט עם פעולות אריתמטיות"
+        },
+        fullDescription: {
+          en: "Built calculator application with HTML5, CSS3 Grid, and vanilla JavaScript. Features basic arithmetic operations with clean, modern design",
+          he: "בניתי אפליקציית מחשבון עם HTML5, CSS3 Grid ו-JavaScript טהור. כולל פעולות אריתמטיות בסיסיות עם עיצוב נקי ומודרני"
+        },
+        tech: ["HTML5", "JavaScript", "CSS3", "Git"],
+        gradient: "from-violet-500 to-purple-500",
+        github: "https://github.com/matan4749/calculator-js",
+        featured: true,
+      },
+      {
+        title: "Todo List App",
+        description: {
+          en: "Modern todo list with filters and local storage",
+          he: "רשימת משימות מודרנית עם פילטרים ושמירה מקומית"
+        },
+        fullDescription: {
+          en: "Built todo list application with localStorage persistence, filter options (all/active/completed), and responsive design",
+          he: "בניתי אפליקציית todo list עם שמירה ב-localStorage, אפשרויות סינון (הכל/פעיל/הושלם) ועיצוב רספונסיבי"
+        },
+        tech: ["HTML5", "JavaScript", "CSS3", "Git"],
+        gradient: "from-emerald-500 to-teal-500",
+        github: "https://github.com/matan4749/todo-list-app",
+        featured: true,
+      },
+      {
+        title: "Weather App JS",
+        description: {
+          en: "Weather app with OpenWeatherMap API integration",
+          he: "אפליקציית מזג אוויר עם אינטגרציית OpenWeatherMap API"
+        },
+        fullDescription: {
+          en: "Created weather app with city search, temperature display, humidity, wind speed. Includes demo mode for testing without API key",
+          he: "יצרתי אפליקציית מזג אוויר עם חיפוש עיר, תצוגת טמפרטורה, לחות ומהירות רוח. כולל מצב הדגמה לבדיקה ללא מפתח API"
+        },
+        tech: ["HTML5", "JavaScript", "API", "Git"],
+        gradient: "from-sky-500 to-blue-500",
+        github: "https://github.com/matan4749/weather-app-js",
+        featured: true,
+      },
+      {
+        title: "Quiz App JS",
+        description: {
+          en: "Interactive quiz with 10 questions and score tracking",
+          he: "חידון אינטראקטיבי עם 10 שאלות ומעקב ניקוד"
+        },
+        fullDescription: {
+          en: "Developed quiz application with 10 multiple-choice questions, progress tracking, color-coded feedback, and final score display",
+          he: "פיתחתי אפליקציית חידון עם 10 שאלות רב-ברירה, מעקב התקדמות, משוב עם צבעים ותצוגת ניקוד סופי"
+        },
+        tech: ["HTML5", "JavaScript", "CSS3", "Git"],
+        gradient: "from-fuchsia-500 to-pink-500",
+        github: "https://github.com/matan4749/quiz-app-js",
+        featured: true,
+      },
+      {
+        title: "Timer App JS",
+        description: {
+          en: "Dual stopwatch and countdown timer application",
+          he: "אפליקציית שעון עצר וטיימר ספירה לאחור כפולה"
+        },
+        fullDescription: {
+          en: "Built timer app with dual mode: stopwatch with lap recording and countdown timer with alert notifications",
+          he: "בניתי אפליקציית טיימר עם מצב כפול: שעון עצר עם רישום סיבובים וטיימר ספירה לאחור עם התראות"
+        },
+        tech: ["HTML5", "JavaScript", "CSS3", "Git"],
+        gradient: "from-amber-500 to-orange-500",
+        github: "https://github.com/matan4749/timer-app-js",
+        featured: true,
+      },
+      // Node.js/MongoDB Projects
+      {
+        title: "Authentication Service",
+        description: {
+          en: "JWT authentication microservice",
+          he: "שירות אימות JWT מיקרו-שירות"
+        },
+        fullDescription: {
+          en: "Developed authentication microservice using Node.js and MongoDB with JWT tokens, password hashing, and OAuth integration",
+          he: "פיתחתי מיקרו-שירות אימות באמצעות Node.js ו-MongoDB עם טוקני JWT, הצפנת סיסמאות ואינטגרציה עם OAuth"
+        },
+        tech: ["Node.js", "MongoDB", "Git"],
+        gradient: "from-green-600 to-emerald-600",
+        github: "https://github.com/matan4749/AuthenticationService",
+        featured: false,
+      },
+      {
+        title: "File Upload Service",
+        description: {
+          en: "Cloud file storage and management",
+          he: "שירות אחסון וניהול קבצים בענן"
+        },
+        fullDescription: {
+          en: "Created file upload service with Node.js featuring file validation, cloud storage integration, and file management API",
+          he: "יצרתי שירות העלאת קבצים עם Node.js הכולל ולידציה של קבצים, אינטגרציה עם אחסון ענן ו-API לניהול קבצים"
+        },
+        tech: ["Node.js", "MongoDB", "Git", "Linux"],
+        gradient: "from-teal-600 to-cyan-600",
+        github: "https://github.com/matan4749/FileUploadService",
+        featured: false,
+      },
+      {
+        title: "E-Commerce Backend",
+        description: {
+          en: "Complete e-commerce API server",
+          he: "שרת API מלא לאתר מסחר אלקטרוני"
+        },
+        fullDescription: {
+          en: "Built e-commerce backend using Node.js and MongoDB with product management, order processing, and payment integration",
+          he: "בניתי Backend לאתר מסחר אלקטרוני באמצעות Node.js ו-MongoDB עם ניהול מוצרים, עיבוד הזמנות ואינטגרציה עם תשלומים"
+        },
+        tech: ["Node.js", "MongoDB", "Git"],
+        gradient: "from-cyan-600 to-blue-600",
+        github: "https://github.com/matan4749/ECommerceBackend",
+        featured: false,
+      },
+      // Linux Projects
+      {
+        title: "System Monitor",
+        description: {
+          en: "Linux system monitoring tool",
+          he: "כלי ניטור מערכת לינוקס"
+        },
+        fullDescription: {
+          en: "Developed system monitoring tool for Linux with resource tracking, alerts, logging, and performance analytics",
+          he: "פיתחתי כלי ניטור מערכת ללינוקס עם מעקב משאבים, התראות, רישום ביומן וניתוח ביצועים"
+        },
+        tech: ["Python", "Linux", "Git"],
+        gradient: "from-slate-600 to-gray-600",
+        github: "https://github.com/matan4749/SystemMonitor",
+        featured: false,
+      },
+      {
+        title: "Backup Automation",
+        description: {
+          en: "Automated backup solution for Linux",
+          he: "פתרון גיבוי אוטומטי ללינוקס"
+        },
+        fullDescription: {
+          en: "Created automated backup system for Linux servers with scheduling, compression, encryption, and cloud upload capabilities",
+          he: "יצרתי מערכת גיבוי אוטומטית לשרתי לינוקס עם תזמון, דחיסה, הצפנה ויכולות העלאה לענן"
+        },
+        tech: ["Python", "Linux", "Git"],
+        gradient: "from-gray-600 to-zinc-600",
+        github: "https://github.com/matan4749/BackupAutomation",
+        featured: false,
+      },
+      {
+        title: "Server Configuration Manager",
+        description: {
+          en: "Infrastructure as code for Linux servers",
+          he: "תשתית כקוד לשרתי לינוקס"
+        },
+        fullDescription: {
+          en: "Built server configuration management tool for Linux using Python with automated setup, security hardening, and deployment scripts",
+          he: "בניתי כלי ניהול תצורת שרתים ללינוקס באמצעות Python עם הגדרה אוטומטית, חיזוק אבטחה וסקריפטים לפריסה"
+        },
+        tech: ["Python", "Linux", "Git"],
+        gradient: "from-zinc-600 to-stone-600",
+        github: "https://github.com/matan4749/ServerConfigManager",
+        featured: false,
       },
     ],
   };
@@ -163,10 +718,10 @@ export default function Home() {
     setMessages((prev) => [...prev, { role: "user", content: userMessageText }]);
     setInputMessage("");
 
-    // Add loading message
+    // Add typing indicator
     setMessages((prev) => [
       ...prev,
-      { role: "assistant", content: "מחשב תשובה..." },
+      { role: "assistant", content: "typing" },
     ]);
 
     try {
@@ -185,7 +740,7 @@ export default function Home() {
         const newMessages = [...prev];
         newMessages[newMessages.length - 1] = {
           role: "assistant",
-          content: data.response || data.error || "מצטער, לא הצלחתי לענות על השאלה",
+          content: data.response || data.error || t("chat.error"),
         };
         return newMessages;
       });
@@ -195,7 +750,7 @@ export default function Home() {
         const newMessages = [...prev];
         newMessages[newMessages.length - 1] = {
           role: "assistant",
-          content: "מצטער, אירעה שגיאה. נסה שוב.",
+          content: t("chat.error"),
         };
         return newMessages;
       });
@@ -430,7 +985,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0e27] text-white overflow-hidden">
+    <div className="min-h-screen bg-[#0a0e27] text-white overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background Grid Pattern */}
       <div className="fixed inset-0 grid-pattern opacity-50 pointer-events-none" />
 
@@ -449,9 +1004,10 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold gradient-text"
           >
-            {cvKnowledge.personalInfo.nameEn}
+            {t("nav.name")}
           </motion.div>
           <div className="flex gap-4">
+            <LanguageToggle />
             {[
               {
                 href: `https://${cvKnowledge.personalInfo.github}`,
@@ -485,7 +1041,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative">
+      <section className="min-h-screen flex items-center justify-center pt-20 relative">
         <div className="max-w-7xl w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -503,7 +1059,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
               >
                 <Sparkles className="w-4 h-4" />
                 <span className="text-sm font-medium">
-                  Available for opportunities
+                  {t("hero.badge")}
                 </span>
               </motion.div>
 
@@ -517,7 +1073,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   transition={{ delay: 0.3 }}
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
                 >
-                  <span className="gradient-text glow-text">Matan Amar</span>
+                  <span className="gradient-text glow-text">{t("hero.name")}</span>
                 </motion.h1>
 
                 <motion.p
@@ -529,7 +1085,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   transition={{ delay: 0.4 }}
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-cyan-400 font-semibold"
                 >
-                  {cvKnowledge.personalInfo.title}
+                  {t("hero.title")}
                 </motion.p>
 
                 <motion.div
@@ -543,14 +1099,14 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 >
                   <p className="text-base md:text-lg text-gray-400 leading-relaxed">
                     {expandedAbout
-                      ? cvKnowledge.personalInfo.fullDescription
-                      : cvKnowledge.personalInfo.shortDescription}
+                      ? t("hero.fullDescription")
+                      : t("hero.shortDescription")}
                   </p>
                   <button
                     onClick={() => setExpandedAbout(!expandedAbout)}
                     className="mt-3 text-cyan-400 text-sm hover:text-cyan-300 transition-colors flex items-center gap-2"
                   >
-                    <span>{expandedAbout ? "Show less" : "Read more"}</span>
+                    <span>{expandedAbout ? t("hero.showLess") : t("hero.readMore")}</span>
                     <motion.div
                       animate={{ rotate: expandedAbout ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -577,16 +1133,26 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   }
                   className="btn-primary flex items-center gap-2"
                 >
-                  <span>View My Work</span>
+                  <span>{t("hero.viewWork")}</span>
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="/Matan-Amar-CV.pdf"
+                  download="Matan-Amar-CV.pdf"
+                  className="btn-secondary flex items-center gap-2"
+                >
+                  <Download className="w-5 h-5" />
+                  <span>{t("hero.downloadCV")}</span>
+                </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href={`mailto:${cvKnowledge.personalInfo.email}`}
                   className="btn-secondary"
                 >
-                  Get In Touch
+                  {t("hero.getInTouch")}
                 </motion.a>
               </motion.div>
             </motion.div>
@@ -680,7 +1246,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center gap-2 text-cyan-400"
             >
-              <span className="text-sm">Scroll to explore</span>
+              <span className="text-sm">{t("hero.scrollToExplore")}</span>
               <ChevronDown className="w-6 h-6" />
             </motion.div>
           </motion.div>
@@ -688,7 +1254,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
       </section>
 
       {/* Skills Section */}
-      <section className="py-32 px-6 relative">
+      <section className="py-32 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -697,9 +1263,9 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
-              Tech Stack
+              {t("skills.title")}
             </h2>
-            <p className="text-gray-400 text-base md:text-lg">Technologies I work with</p>
+            <p className="text-gray-400 text-base md:text-lg">{t("skills.subtitle")}</p>
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
@@ -710,7 +1276,9 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -8, rotateY: 5 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedSkill(skill.name)}
                 className="p-4 sm:p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all cursor-pointer group"
               >
                 <div className="flex flex-col items-center gap-4">
@@ -733,7 +1301,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
       </section>
 
       {/* Experience Section */}
-      <section className="py-32 px-6 relative">
+      <section className="py-32 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -742,9 +1310,9 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
-              Experience
+              {t("experience.title")}
             </h2>
-            <p className="text-gray-400 text-base md:text-lg">My professional journey</p>
+            <p className="text-gray-400 text-base md:text-lg">{t("experience.subtitle")}</p>
           </motion.div>
 
           <div className="space-y-8">
@@ -772,23 +1340,23 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   <div className="flex flex-col md:flex-row gap-6">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
-                        {exp.icon}
+                        {index === 0 ? <Zap className="w-6 h-6" /> : <User className="w-6 h-6" />}
                       </div>
                     </div>
                     <div className="flex-1">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                         <h3 className="text-xl md:text-2xl font-bold text-white">
-                          {exp.title}
+                          {typeof exp.title === 'object' ? exp.title[language] : exp.title}
                         </h3>
                         <span className="text-cyan-400 font-medium text-sm md:text-base">
                           {exp.year}
                         </span>
                       </div>
                       <div className="text-blue-400 font-semibold mb-3 text-sm md:text-base">
-                        {exp.company}
+                        {typeof exp.company === 'object' ? exp.company[language] : exp.company}
                       </div>
                       <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                        {exp.description}
+                        {typeof exp.description === 'object' ? exp.description[language] : exp.description}
                       </p>
                       <AnimatePresence>
                         {(exp as any).fullDescription &&
@@ -802,7 +1370,9 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                             >
                               <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
                                 <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                                  {(exp as any).fullDescription}
+                                  {typeof (exp as any).fullDescription === 'object'
+                                    ? (exp as any).fullDescription[language]
+                                    : (exp as any).fullDescription}
                                 </p>
                               </div>
                             </motion.div>
@@ -818,7 +1388,7 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 px-6 relative">
+      <section id="projects" className="py-32 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -827,23 +1397,25 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">
-              Featured Projects
+              {t("projects.title")}
             </h2>
-            <p className="text-gray-400 text-base md:text-lg">Some of my recent work</p>
+            <p className="text-gray-400 text-base md:text-lg">{t("projects.subtitle")}</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {cvKnowledge.projects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
+            {cvKnowledge.projects
+              .filter(project => showAllProjects || project.featured)
+              .map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group"
+                className="group w-full"
               >
                 <div
-                  className="h-full p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover cursor-pointer"
+                  className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all card-hover cursor-pointer flex flex-col"
                   onClick={() => {
                     setExpandedProject(
                       expandedProject === index ? null : index
@@ -851,7 +1423,11 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   }}
                 >
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} mb-6 flex items-center justify-center`}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${
+                      index === 0 ? "from-cyan-500 to-blue-500" :
+                      index === 1 ? "from-blue-500 to-purple-500" :
+                      "from-purple-500 to-pink-500"
+                    } mb-6 flex items-center justify-center`}
                   >
                     <Database className="w-6 h-6 text-white" />
                   </div>
@@ -861,29 +1437,42 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                   </h3>
 
                   <p className="text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
-                    {project.description}
+                    {typeof project.description === 'object' ? project.description[language] : project.description}
                   </p>
 
-                  <AnimatePresence>
-                    {(project as any).fullDescription &&
-                      expandedProject === index && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                          animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
-                          exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 mb-4">
-                            <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                              {(project as any).fullDescription}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                  </AnimatePresence>
+                  {project.fullDescription && expandedProject === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden mb-4"
+                    >
+                      <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                          {typeof project.fullDescription === 'object'
+                            ? project.fullDescription[language]
+                            : project.fullDescription}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
 
-                  <div className="flex flex-wrap gap-2">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 transition-all group/github"
+                    >
+                      <Github className="w-4 h-4 group-hover/github:scale-110 transition-transform" />
+                      <span className="text-sm font-medium">{t("projects.viewGithub")}</span>
+                      <ArrowRight className="w-4 h-4 group-hover/github:translate-x-1 transition-transform" />
+                    </a>
+                  )}
+
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
@@ -897,11 +1486,30 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
               </motion.div>
             ))}
           </div>
+
+          {/* Show More/Less Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              onClick={() => setShowAllProjects(!showAllProjects)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-secondary flex items-center gap-2 mx-auto"
+            >
+              <Database className="w-5 h-5" />
+              <span>{showAllProjects ? t("projects.showLess") : t("projects.showMore")}</span>
+              <ChevronDown className={`w-5 h-5 transition-transform ${showAllProjects ? 'rotate-180' : ''}`} />
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-6 relative">
+      <section className="py-32 relative">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -910,11 +1518,10 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             className="space-y-8"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text">
-              Let's Work Together
+              {t("contact.title")}
             </h2>
             <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
+              {t("contact.subtitle")}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
@@ -924,7 +1531,18 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 className="btn-primary flex items-center gap-2"
               >
                 <Mail className="w-5 h-5" />
-                <span>Email Me</span>
+                <span>{t("contact.emailMe")}</span>
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/972545993085"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary flex items-center gap-2 bg-green-600/20 hover:bg-green-600/30 border-green-500/30 hover:border-green-500/50 text-green-400 hover:text-green-300"
+              >
+                <Phone className="w-5 h-5" />
+                <span>{t("contact.whatsapp")}</span>
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -935,21 +1553,107 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                 className="btn-secondary flex items-center gap-2"
               >
                 <Linkedin className="w-5 h-5" />
-                <span>LinkedIn</span>
+                <span>{t("contact.linkedin")}</span>
               </motion.a>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Technology Details Modal */}
+      <AnimatePresence>
+        {selectedSkill && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedSkill(null)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#1a1f3a] border border-cyan-500/30 rounded-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold gradient-text">
+                  {t("skills.modal.title")} {selectedSkill}
+                </h3>
+                <button
+                  onClick={() => setSelectedSkill(null)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {cvKnowledge.projects
+                  .filter((project) =>
+                    project.tech.some((tech) =>
+                      tech.toLowerCase().includes(selectedSkill.toLowerCase()) ||
+                      selectedSkill.toLowerCase().includes(tech.toLowerCase())
+                    )
+                  )
+                  .map((project, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all"
+                    >
+                      <h4 className="text-xl font-bold text-white mb-2">
+                        {project.title}
+                      </h4>
+                      <p className="text-gray-400 text-sm mb-3">
+                        {typeof project.description === 'object'
+                          ? project.description[language]
+                          : project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className={`px-3 py-1 text-xs rounded-full ${
+                              tech.toLowerCase().includes(selectedSkill.toLowerCase()) ||
+                              selectedSkill.toLowerCase().includes(tech.toLowerCase())
+                                ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
+                                : "bg-white/5 text-gray-400 border border-white/10"
+                            }`}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                {cvKnowledge.projects.filter((project) =>
+                  project.tech.some((tech) =>
+                    tech.toLowerCase().includes(selectedSkill.toLowerCase()) ||
+                    selectedSkill.toLowerCase().includes(tech.toLowerCase())
+                  )
+                ).length === 0 && (
+                  <p className="text-gray-400 text-center py-8">
+                    {t("skills.modal.noProjects")}
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* AI Chat Button */}
       <motion.button
         onClick={() => setIsChatOpen(!isChatOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/50 z-50"
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/50 z-[100]"
       >
-        <MessageSquare className="w-8 h-8" />
+        <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8" />
       </motion.button>
 
       {/* AI Chat Window */}
@@ -959,28 +1663,28 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-20 right-4 sm:bottom-28 sm:right-8 w-[calc(100vw-2rem)] sm:w-96 h-[70vh] sm:h-[500px] max-h-[500px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 left-6 right-6 sm:bottom-28 sm:left-auto sm:right-8 sm:w-96 h-[70vh] max-h-[600px] sm:h-[500px] rounded-2xl bg-[#1a1f3a] border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[100] flex flex-col overflow-hidden"
           >
             {/* Chat Header */}
-            <div className="p-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-b border-white/10 flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                  <User className="w-5 h-5 text-white" />
+            <div className="p-3 sm:p-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-b border-white/10 flex justify-between items-center flex-shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                  <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-white hebrew-inline">
-                    מתן עמר
+                <div className="min-w-0">
+                  <h3 className="font-bold text-white hebrew-inline text-sm sm:text-base truncate">
+                    {t("chat.name")}
                   </h3>
-                  <p className="text-xs text-gray-400 hebrew-inline">
-                    שאלו אותי כל דבר
+                  <p className="text-xs text-gray-400 hebrew-inline truncate">
+                    {t("chat.subtitle")}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsChatOpen(false)}
-                className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-2"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
@@ -995,41 +1699,47 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  <div
-                    className={`max-w-[85%] p-4 rounded-2xl hebrew-inline ${
-                      message.role === "user"
-                        ? "bg-gradient-to-br from-cyan-500 to-blue-500 text-white"
-                        : "bg-white/5 text-gray-200 border border-white/10"
-                    }`}
-                    style={{ lineHeight: "1.8" }}
-                  >
-                    {message.content.split("\n").map((line, i) => (
-                      <div key={i} className="text-sm mb-1">
-                        {line}
-                      </div>
-                    ))}
-                  </div>
+                  {message.content === "typing" ? (
+                    <div className="bg-white/5 border border-white/10 rounded-2xl">
+                      <TypingIndicator />
+                    </div>
+                  ) : (
+                    <div
+                      className={`max-w-[85%] p-4 rounded-2xl hebrew-inline ${
+                        message.role === "user"
+                          ? "bg-gradient-to-br from-cyan-500 to-blue-500 text-white"
+                          : "bg-white/5 text-gray-200 border border-white/10"
+                      }`}
+                      style={{ lineHeight: "1.8" }}
+                    >
+                      {message.content.split("\n").map((line, i) => (
+                        <div key={i} className="text-sm mb-1">
+                          {line}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
 
             {/* Chat Input */}
-            <div className="p-4 border-t border-white/10 bg-white/5">
+            <div className="p-3 sm:p-4 border-t border-white/10 bg-white/5 flex-shrink-0">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder="כתבו שאלה..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors hebrew-inline"
-                  style={{ direction: "rtl" }}
+                  placeholder={t("chat.placeholder")}
+                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors hebrew-inline"
+                  style={{ direction: language === "he" ? "rtl" : "ltr" }}
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all flex-shrink-0"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
@@ -1038,12 +1748,11 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 px-6">
+      <footer className="border-t border-white/10 py-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400">
-              &copy; 2025 {cvKnowledge.personalInfo.nameEn}. All rights
-              reserved.
+              &copy; 2025 {t("nav.name")}. {t("footer.rights")}
             </div>
             <div className="flex items-center gap-6 text-gray-400">
               <a

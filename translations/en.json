@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "name": "Matan Amar"
+  },
+  "hero": {
+    "badge": "Available for opportunities",
+    "name": "Matan Amar",
+    "title": "Software Engineer",
+    "shortDescription": "Building innovative applications with modern technologies",
+    "fullDescription": "Software engineer with BSc in Software Engineering and hands-on experience building mobile applications, web solutions, and automation systems. Proficient in React Native and Firebase with proven ability to deliver production-ready applications. Combines technical skills with strong problem-solving abilities and leadership experience from military service. Seeking junior developer role to contribute to innovative development teams",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "viewWork": "View My Work",
+    "getInTouch": "Get In Touch",
+    "downloadCV": "Download CV",
+    "scrollToExplore": "Scroll to explore"
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "subtitle": "Technologies I work with",
+    "modal": {
+      "title": "Projects using",
+      "noProjects": "No projects found using this technology",
+      "usedIn": "Used in"
+    },
+    "categories": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "gameDev": "Game Dev",
+      "tools": "Tools",
+      "systems": "Systems"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My professional journey",
+    "items": [
+      {
+        "year": "2022 - 2023",
+        "title": "RPA Developer",
+        "company": "HMS - Hospital Management Systems",
+        "description": "Automated workflows and data processing systems using UiPath",
+        "fullDescription": "Designed and implemented 15+ automated workflows using UiPath, reducing manual processing time by 60% for data entry and reporting tasks. Built ETL pipelines processing 10,000+ records daily from multiple sources (Excel, databases, web services), achieving 95%+ reliability. Integrated Business Intelligence and Machine Learning tools into automation workflows for predictive analytics"
+      },
+      {
+        "year": "2015 - 2017",
+        "title": "Military Service",
+        "company": "IDF - Israel Defense Forces",
+        "description": "Led communications team and awarded Commander's Excellence Award for exceptional leadership"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Some of my recent work",
+    "viewGithub": "View on GitHub",
+    "showMore": "Show More Projects",
+    "showLess": "Show Less",
+    "items": [
+      {
+        "title": "Room 8",
+        "description": "Cross-platform roommate matching mobile application",
+        "fullDescription": "Built cross-platform roommate matching app with Firebase Authentication and real-time synchronization. Implemented matching algorithm analyzing 15+ compatibility dimensions and integrated push notifications"
+      },
+      {
+        "title": "Schovid",
+        "description": "School management platform for students, parents, and teachers",
+        "fullDescription": "Created school management platform connecting students, parents, and teachers with role-based access control. Built features for schedules, grade tracking, assignments, and messaging with responsive UI for multiple devices"
+      },
+      {
+        "title": "Renovations",
+        "description": "Modern business website with responsive design",
+        "fullDescription": "Developed responsive business website with modern mobile-first design, interactive forms, and CSS Grid/Flexbox layouts"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "subtitle": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
+    "emailMe": "Email Me",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "chat": {
+    "name": "Matan Amar",
+    "subtitle": "Ask me anything",
+    "placeholder": "Type your question...",
+    "initialMessage": "Hey! 👋\n\nI'm Matan Amar, a software developer and RPA expert.\nGlad you're here!\n\nFeel free to ask me anything:\n• About my professional experience\n• About the projects I've developed\n• About my technical skills\n• About my education and studies\n• Contact details and more info\n\nWhat would you like to know? 😊",
+    "loading": "Thinking...",
+    "error": "Sorry, an error occurred. Please try again."
+  }
+}
