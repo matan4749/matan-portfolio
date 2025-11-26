@@ -360,6 +360,186 @@ export default function Home() {
         github: "https://github.com/matan4749/enterprise-erp-system",
         featured: false,
       },
+      {
+        title: "AI Recommendation Engine",
+        description: {
+          en: "Machine learning recommendation system with collaborative filtering",
+          he: "מנוע המלצות AI עם סינון שיתופי"
+        },
+        fullDescription: {
+          en: "Built scalable recommendation engine using collaborative and content-based filtering with TensorFlow and scikit-learn. Processes 10M+ user interactions daily, provides personalized recommendations with 85%+ accuracy, implements matrix factorization and deep learning models, features A/B testing framework, real-time recommendation updates, handles cold start problem with hybrid approaches, and includes explainable AI for recommendation reasoning. Increased user engagement by 40%",
+          he: "בניתי מנוע המלצות מדרגי באמצעות סינון שיתופי ומבוסס תוכן עם TensorFlow ו-scikit-learn. מעבד למעלה מ-10 מיליון אינטראקציות משתמשים ביום, מספק המלצות מותאמות אישית עם דיוק של 85%+, מיישם פקטוריזציה מטריצית ומודלי למידה עמוקה, כולל מסגרת בדיקות A/B, עדכוני המלצות בזמן אמת, מטפל בבעיית cold start עם גישות היברידיות, וכולל AI מוסבר לנימוק המלצות. הגביר מעורבות משתמשים ב-40%"
+        },
+        tech: ["Python", "TensorFlow", "scikit-learn", "Pandas", "Redis", "PostgreSQL", "Docker", "Git"],
+        gradient: "from-yellow-500 to-orange-500",
+        github: "https://github.com/matan4749/ai-recommendation-engine",
+        featured: false,
+      },
+      {
+        title: "AR Math Explorer",
+        description: {
+          en: "Augmented Reality educational app for interactive mathematics",
+          he: "אפליקציית AR חינוכית למתמטיקה אינטראקטיבית"
+        },
+        fullDescription: {
+          en: "Created innovative AR mathematics learning platform using ARCore/ARKit and Unity. Features include 3D visualization of complex mathematical concepts, interactive geometry and algebra problems, real-time hand gesture recognition, gamified learning with achievements, multiplayer collaborative problem-solving, step-by-step solution guidance, adaptive difficulty levels, and progress tracking dashboard. Makes abstract concepts tangible and improved student comprehension by 55%",
+          he: "יצרתי פלטפורמת למידת מתמטיקה AR חדשנית באמצעות ARCore/ARKit ו-Unity. כולל ויזואליזציה תלת-ממדית של מושגים מתמטיים מורכבים, בעיות גיאומטריה ואלגברה אינטראקטיביות, זיהוי מחוות יד בזמן אמת, למידה מבוססת משחק עם הישגים, פתרון בעיות שיתופי רב-משתתפים, הנחיית פתרון שלב אחר שלב, רמות קושי מסתגלות ולוח מחוונים למעקב התקדמות. הופך מושגים מופשטים למוחשיים ושיפר הבנת תלמידים ב-55%"
+        },
+        tech: ["Unity", "C#", "ARCore", "ARKit", "Vuforia", "Firebase", "Git"],
+        gradient: "from-red-500 to-pink-500",
+        github: "https://github.com/matan4749/ar-math-explorer",
+        featured: false,
+      },
+      {
+        title: "CV Object Detection",
+        description: {
+          en: "Real-time object detection and tracking system",
+          he: "מערכת זיהוי ומעקב אובייקטים בזמן אמת"
+        },
+        fullDescription: {
+          en: "Implemented advanced object detection system using YOLO v8 and OpenCV for real-time video analysis. Achieves 60+ FPS on standard hardware, detects and tracks 80+ object classes, includes custom model training pipeline, supports multi-object tracking across frames, features crowd counting and density estimation, provides heatmap visualization, optimized for edge devices with TensorRT, and includes REST API for integration. Used in security and retail analytics applications",
+          he: "יישמתי מערכת זיהוי אובייקטים מתקדמת באמצעות YOLO v8 ו-OpenCV לניתוח וידאו בזמן אמת. משיג למעלה מ-60 FPS על חומרה סטנדרטית, מזהה ועוקב אחרי למעלה מ-80 מחלקות אובייקטים, כולל צינור אימון מודל מותאם אישית, תומך במעקב רב-אובייקטי על פני פריימים, כולל ספירת קהל והערכת צפיפות, מספק ויזואליזציה של מפת חום, מותאם למכשירי edge עם TensorRT, וכולל REST API לאינטגרציה. משמש באפליקציות אבטחה וניתוח קמעונאות"
+        },
+        tech: ["Python", "YOLO", "OpenCV", "TensorRT", "FastAPI", "NumPy", "Docker", "Git"],
+        gradient: "from-teal-500 to-cyan-500",
+        github: "https://github.com/matan4749/cv-object-detection",
+        featured: false,
+      },
+      {
+        title: "DevBlog Next.js",
+        description: {
+          en: "Modern developer blog with MDX and static generation",
+          he: "בלוג מפתחים מודרני עם MDX ויצירה סטטית"
+        },
+        fullDescription: {
+          en: "Built high-performance developer blog using Next.js 15 with App Router and MDX for content. Features include server-side rendering and static generation, syntax highlighting with Prism.js, reading time estimation, tag-based filtering, full-text search, RSS feed generation, SEO optimization with metadata API, responsive design with Tailwind CSS, dark mode support, and comments system integration. Achieves perfect 100 Lighthouse score",
+          he: "בניתי בלוג מפתחים בעל ביצועים גבוהים באמצעות Next.js 15 עם App Router ו-MDX לתוכן. כולל רינדור צד שרת ויצירה סטטית, הדגשת תחביר עם Prism.js, הערכת זמן קריאה, סינון מבוסס תגיות, חיפוש טקסט מלא, יצירת RSS feed, אופטימיזציית SEO עם metadata API, עיצוב רספונסיבי עם Tailwind CSS, תמיכה במצב כהה ואינטגרציה של מערכת תגובות. משיג ציון Lighthouse מושלם של 100"
+        },
+        tech: ["Next.js", "React", "MDX", "TypeScript", "Tailwind CSS", "Vercel", "Git"],
+        gradient: "from-slate-600 to-gray-700",
+        github: "https://github.com/matan4749/devblog-nextjs",
+        featured: false,
+      },
+      {
+        title: "Docker Full-Stack App",
+        description: {
+          en: "Microservices architecture with Docker and Kubernetes",
+          he: "ארכיטקטורת microservices עם Docker ו-Kubernetes"
+        },
+        fullDescription: {
+          en: "Developed production-ready microservices application with Docker and Kubernetes orchestration. Includes Node.js backend services, React frontend, PostgreSQL and Redis databases, Nginx reverse proxy, service mesh with Istio, horizontal pod autoscaling, health checks and monitoring with Prometheus/Grafana, centralized logging with ELK stack, CI/CD pipeline with GitHub Actions, and infrastructure as code with Terraform. Handles 100K+ requests per hour",
+          he: "פיתחתי אפליקציית microservices מוכנת לייצור עם תזמור Docker ו-Kubernetes. כולל שירותי backend Node.js, frontend React, מסדי נתונים PostgreSQL ו-Redis, reverse proxy Nginx, service mesh עם Istio, קנה מידה אופקי אוטומטי של pods, בדיקות תקינות ומוניטורינג עם Prometheus/Grafana, לוגים מרוכזים עם ELK stack, צינור CI/CD עם GitHub Actions ותשתית כקוד עם Terraform. מטפל בלמעלה מ-100K בקשות לשעה"
+        },
+        tech: ["Docker", "Kubernetes", "Node.js", "React", "PostgreSQL", "Redis", "Nginx", "Terraform", "Git"],
+        gradient: "from-blue-700 to-indigo-800",
+        github: "https://github.com/matan4749/docker-fullstack-app",
+        featured: false,
+      },
+      {
+        title: "E-Commerce API .NET",
+        description: {
+          en: "RESTful API with .NET 8 and clean architecture",
+          he: "RESTful API עם .NET 8 וארכיטקטורה נקייה"
+        },
+        fullDescription: {
+          en: "Built scalable e-commerce API using .NET 8 with clean architecture principles. Features include CQRS pattern with MediatR, Entity Framework Core with repository pattern, JWT authentication and authorization, Swagger/OpenAPI documentation, rate limiting and caching, background jobs with Hangfire, payment integration with Stripe, email notifications, comprehensive unit and integration tests, and Docker support. Follows SOLID principles and domain-driven design",
+          he: "בניתי API מסחר אלקטרוני מדרגי באמצעות .NET 8 עם עקרונות ארכיטקטורה נקייה. כולל תבנית CQRS עם MediatR, Entity Framework Core עם תבנית repository, אימות והרשאה JWT, תיעוד Swagger/OpenAPI, הגבלת קצב ו-caching, משימות רקע עם Hangfire, אינטגרציית תשלום עם Stripe, התראות דוא\"ל, בדיקות יחידה ואינטגרציה מקיפות ותמיכה ב-Docker. עוקב אחרי עקרונות SOLID ועיצוב מונחה תחום"
+        },
+        tech: ["C#", ".NET 8", "Entity Framework", "SQL Server", "MediatR", "Swagger", "Docker", "Git"],
+        gradient: "from-purple-700 to-violet-800",
+        github: "https://github.com/matan4749/ecommerce-api-dotnet",
+        featured: false,
+      },
+      {
+        title: "Microservices E-Commerce",
+        description: {
+          en: "Distributed e-commerce platform with event-driven architecture",
+          he: "פלטפורמת מסחר אלקטרוני מבוזרת עם ארכיטקטורה מונחית אירועים"
+        },
+        fullDescription: {
+          en: "Developed enterprise-scale microservices e-commerce platform with event-driven architecture. Includes separate services for products, orders, payments, inventory, and notifications, RabbitMQ for message queueing, API Gateway with rate limiting, service discovery with Consul, distributed tracing with Jaeger, centralized configuration, saga pattern for distributed transactions, eventual consistency with event sourcing, and comprehensive monitoring. Deployed on Kubernetes with high availability",
+          he: "פיתחתי פלטפורמת מסחר אלקטרוני microservices בקנה מידה ארגוני עם ארכיטקטורה מונחית אירועים. כולל שירותים נפרדים למוצרים, הזמנות, תשלומים, מלאי והתראות, RabbitMQ לתורי הודעות, API Gateway עם הגבלת קצב, גילוי שירותים עם Consul, מעקב מבוזר עם Jaeger, תצורה מרכזית, תבנית saga לעסקאות מבוזרות, עקביות סופית עם event sourcing ומוניטורינג מקיף. נפרס על Kubernetes עם זמינות גבוהה"
+        },
+        tech: ["Node.js", "RabbitMQ", "MongoDB", "Redis", "Docker", "Kubernetes", "Jaeger", "Consul", "Git"],
+        gradient: "from-emerald-600 to-green-700",
+        github: "https://github.com/matan4749/microservices-ecommerce",
+        featured: true,
+      },
+      {
+        title: "ML Training Platform",
+        description: {
+          en: "Automated machine learning training and deployment pipeline",
+          he: "פלטפורמת אימון ופריסת למידת מכונה אוטומטית"
+        },
+        fullDescription: {
+          en: "Created comprehensive MLOps platform for automated model training and deployment. Features include experiment tracking with MLflow, automated hyperparameter tuning, distributed training with Ray, model versioning and registry, automated data validation, feature store, A/B testing framework, model monitoring and drift detection, automated retraining pipelines, REST API for model serving, and Kubernetes-based deployment. Reduces model deployment time from weeks to hours",
+          he: "יצרתי פלטפורמת MLOps מקיפה לאימון ופריסת מודלים אוטומטית. כולל מעקב ניסויים עם MLflow, כוונון היפרפרמטרים אוטומטי, אימון מבוזר עם Ray, גרסאות ורישום מודלים, אימות נתונים אוטומטי, feature store, מסגרת בדיקות A/B, מוניטורינג מודלים וזיהוי סטייה, צינורות אימון מחדש אוטומטיים, REST API להגשת מודלים ופריסה מבוססת Kubernetes. מפחית זמן פריסת מודלים משבועות לשעות"
+        },
+        tech: ["Python", "MLflow", "Ray", "TensorFlow", "PyTorch", "FastAPI", "Kubernetes", "Docker", "Git"],
+        gradient: "from-amber-500 to-yellow-600",
+        github: "https://github.com/matan4749/ml-training-platform",
+        featured: false,
+      },
+      {
+        title: "Mystery Manor - Unity Game",
+        description: {
+          en: "3D mystery adventure game with puzzle mechanics",
+          he: "משחק הרפתקאות תעלומה תלת-ממד עם מכניקות חידות"
+        },
+        fullDescription: {
+          en: "Developed immersive 3D mystery adventure game using Unity and C#. Features include engaging story-driven gameplay, complex puzzle mechanics, interactive object system, inventory management, save/load system, dynamic lighting and shadows, atmospheric sound design, multiple endings based on player choices, 20+ unique levels, and optimized performance for multiple platforms. Combines detective work with adventure elements",
+          he: "פיתחתי משחק הרפתקאות תעלומה תלת-ממד סוחף באמצעות Unity ו-C#. כולל משחקיות מונעת סיפור מרתקת, מכניקות חידות מורכבות, מערכת אובייקטים אינטראקטיבית, ניהול מלאי, מערכת שמירה/טעינה, תאורה וצללים דינמיים, עיצוב סאונד אטמוספרי, סופים מרובים המבוססים על בחירות שחקן, למעלה מ-20 שלבים ייחודיים וביצועים מותאמים לפלטפורמות מרובות. משלב עבודת בילוש עם אלמנטים הרפתקניים"
+        },
+        tech: ["Unity", "C#", "Blender", "FMOD", "ProBuilder", "Git"],
+        gradient: "from-gray-700 to-slate-800",
+        github: "https://github.com/matan4749/mystery-manor-unity",
+        featured: false,
+      },
+      {
+        title: "NL to SQL Converter",
+        description: {
+          en: "Natural language to SQL query generator using AI",
+          he: "ממיר שפה טבעית לשאילתות SQL באמצעות AI"
+        },
+        fullDescription: {
+          en: "Built intelligent NL to SQL converter using GPT-4 and custom fine-tuned models. Supports multiple SQL dialects (PostgreSQL, MySQL, SQL Server), understands complex queries with joins and aggregations, provides query explanation and visualization, includes query validation and optimization suggestions, handles multi-table relationships, features schema-aware generation, supports parameterized queries for security, and includes interactive query builder. Achieves 92%+ accuracy on standard benchmarks",
+          he: "בניתי ממיר NL ל-SQL חכם באמצעות GPT-4 ומודלים מכווננים מותאמים אישית. תומך בדיאלקטים מרובים של SQL (PostgreSQL, MySQL, SQL Server), מבין שאילתות מורכבות עם joins וצבירות, מספק הסבר וויזואליזציה של שאילתות, כולל אימות שאילתות והצעות אופטימיזציה, מטפל ביחסי רב-טבלאות, כולל יצירה מודעת סכמה, תומך בשאילתות מפרמטריות לאבטחה וכולל בונה שאילתות אינטראקטיבי. משיג דיוק של 92%+ בבנצ'מרקים סטנדרטיים"
+        },
+        tech: ["Python", "OpenAI", "LangChain", "SQLAlchemy", "FastAPI", "React", "PostgreSQL", "Git"],
+        gradient: "from-lime-500 to-green-600",
+        github: "https://github.com/matan4749/nl-to-sql",
+        featured: false,
+      },
+      {
+        title: "Pixel Adventure - Unity Game",
+        description: {
+          en: "2D platformer game with retro pixel art style",
+          he: "משחק פלטפורמר דו-ממדי בסגנון פיקסל ארט רטרו"
+        },
+        fullDescription: {
+          en: "Created nostalgic 2D platformer game using Unity with pixel-perfect rendering. Features include smooth character movement and animations, challenging level design with 30+ levels, collectibles and power-ups, enemy AI with various behaviors, boss fights, checkpoint system, leaderboard integration, responsive controls, chiptune soundtrack, and mobile touch controls. Optimized for 60 FPS gameplay on all platforms",
+          he: "יצרתי משחק פלטפורמר דו-ממדי נוסטלגי באמצעות Unity עם רינדור פיקסל מושלם. כולל תנועה ואנימציות דמויות חלקות, עיצוב שלבים מאתגר עם למעלה מ-30 שלבים, אספנים ושדרוגים, AI אויבים עם התנהגויות שונות, קרבות בוסים, מערכת נקודות ביקורת, אינטגרציה של לוח מובילים, בקרות רספונסיביות, פסקול chiptune ובקרות מגע למובייל. מותאם ל-60 FPS על כל הפלטפורמות"
+        },
+        tech: ["Unity", "C#", "Aseprite", "2D Toolkit", "Git"],
+        gradient: "from-fuchsia-500 to-purple-600",
+        github: "https://github.com/matan4749/pixel-adventure-unity",
+        featured: false,
+      },
+      {
+        title: "Real-Time Chat SignalR",
+        description: {
+          en: "Real-time chat application with SignalR and ASP.NET Core",
+          he: "אפליקציית צ'אט בזמן אמת עם SignalR ו-ASP.NET Core"
+        },
+        fullDescription: {
+          en: "Developed scalable real-time chat application using SignalR and ASP.NET Core. Features include one-on-one and group conversations, typing indicators, message read receipts, file and image sharing, emoji support, message search and history, online/offline status, push notifications, end-to-end encryption, message reactions, and responsive UI with React. Supports 10,000+ concurrent connections with Redis backplane",
+          he: "פיתחתי אפליקציית צ'אט בזמן אמת מדרגית באמצעות SignalR ו-ASP.NET Core. כולל שיחות אחד-על-אחד וקבוצתיות, אינדיקטורים של הקלדה, אישורי קריאת הודעות, שיתוף קבצים ותמונות, תמיכה באימוג'ים, חיפוש והיסטוריה של הודעות, סטטוס מחובר/מנותק, התראות push, הצפנה מקצה לקצה, תגובות להודעות וממשק משתמש רספונסיבי עם React. תומך בלמעלה מ-10,000 חיבורים מקבילים עם Redis backplane"
+        },
+        tech: ["C#", "ASP.NET Core", "SignalR", "React", "SQL Server", "Redis", "Docker", "Git"],
+        gradient: "from-sky-500 to-blue-600",
+        github: "https://github.com/matan4749/realtime-chat-signalr",
+        featured: false,
+      },
     ],
   };
 
