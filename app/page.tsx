@@ -152,6 +152,36 @@ export default function Home() {
         icon: "devicon-html5-plain colored",
         category: "Frontend",
       },
+      {
+        name: "AI / Machine Learning",
+        icon: "devicon-tensorflow-original colored",
+        category: "AI/ML",
+      },
+      {
+        name: "TensorFlow",
+        icon: "devicon-tensorflow-original colored",
+        category: "AI/ML",
+      },
+      {
+        name: "PyTorch",
+        icon: "devicon-pytorch-original colored",
+        category: "AI/ML",
+      },
+      {
+        name: "OpenAI",
+        icon: "devicon-openai-plain colored",
+        category: "AI/ML",
+      },
+      {
+        name: "LangChain",
+        icon: "devicon-python-plain colored",
+        category: "AI/ML",
+      },
+      {
+        name: "Computer Vision",
+        icon: "devicon-opencv-plain colored",
+        category: "AI/ML",
+      },
     ],
     experience: [
       {
@@ -563,6 +593,127 @@ export default function Home() {
         tech: ["Docker", "Docker Compose", "CI/CD", "Nginx", "Linux", "Git"],
         gradient: "from-blue-500 to-cyan-500",
         github: "https://github.com/matan4749/docker-fullstack-app",
+        featured: false,
+      },
+      // AI/ML Projects
+      {
+        title: "AI Chatbot Platform",
+        description: {
+          en: "Intelligent chatbot with OpenAI GPT-4 and Claude integration",
+          he: "צ'אטבוט חכם עם אינטגרציה של OpenAI GPT-4 ו-Claude"
+        },
+        fullDescription: {
+          en: "Built advanced AI chatbot platform supporting multiple LLM providers (OpenAI GPT-4, Anthropic Claude, Google Gemini). Features include conversation memory with vector databases (Pinecone), streaming responses, function calling for tool use, RAG (Retrieval Augmented Generation) for knowledge base integration, multi-turn conversations with context window management, custom system prompts, chat history with search, markdown rendering, code syntax highlighting, and admin dashboard for analytics. Implements rate limiting, cost tracking, and model switching",
+          he: "בניתי פלטפורמת צ'אטבוט AI מתקדמת התומכת במספר ספקי LLM (OpenAI GPT-4, Anthropic Claude, Google Gemini). כולל זיכרון שיחות עם מסדי נתונים וקטוריים (Pinecone), תגובות streaming, function calling לשימוש בכלים, RAG (Retrieval Augmented Generation) לאינטגרציה עם בסיס ידע, שיחות מרובות תורות עם ניהול context window, system prompts מותאמים אישית, היסטוריית צ'אט עם חיפוש, רינדור markdown, הדגשת תחביר קוד ולוח בקרה למנהל עם analytics. מיישם rate limiting, מעקב עלויות והחלפת מודלים"
+        },
+        tech: ["Python", "OpenAI", "Claude", "FastAPI", "Pinecone", "LangChain", "Git"],
+        gradient: "from-violet-500 to-purple-600",
+        github: "https://github.com/matan4749/ai-chatbot-platform",
+        featured: true,
+      },
+      {
+        title: "AI Image Generator Studio",
+        description: {
+          en: "Text-to-image generation with Stable Diffusion and DALL-E",
+          he: "יצירת תמונות מטקסט עם Stable Diffusion ו-DALL-E"
+        },
+        fullDescription: {
+          en: "Created professional AI image generation platform supporting multiple models: Stable Diffusion XL, DALL-E 3, and Midjourney API. Features include prompt engineering templates, negative prompts, style presets (photorealistic, anime, oil painting, etc.), image upscaling with Real-ESRGAN, inpainting and outpainting, ControlNet for pose/depth/edge guidance, batch generation, gallery with search and filters, image editing with AI (background removal, object replacement), and API for integration. Built with React frontend and Python backend using diffusers library",
+          he: "יצרתי פלטפורמה מקצועית ליצירת תמונות AI התומכת במודלים מרובים: Stable Diffusion XL, DALL-E 3 ו-Midjourney API. כולל תבניות prompt engineering, negative prompts, presets סגנון (פוטוריאליסטי, אנימה, ציור שמן וכו'), הגדלת תמונות עם Real-ESRGAN, inpainting ו-outpainting, ControlNet להנחיית pose/depth/edge, יצירה אצווה, גלריה עם חיפוש וסינונים, עריכת תמונות עם AI (הסרת רקע, החלפת אובייקטים) ו-API לאינטגרציה. נבנה עם React frontend ו-Python backend באמצעות ספריית diffusers"
+        },
+        tech: ["Python", "Stable Diffusion", "DALL-E", "React", "PyTorch", "FastAPI", "Git"],
+        gradient: "from-pink-500 to-rose-600",
+        github: "https://github.com/matan4749/ai-image-generator",
+        featured: true,
+      },
+      {
+        title: "AI Code Assistant",
+        description: {
+          en: "Intelligent code completion and generation with AI",
+          he: "השלמה ויצירת קוד חכמה עם AI"
+        },
+        fullDescription: {
+          en: "Developed VS Code extension for AI-powered coding assistance using OpenAI Codex and Claude. Features include intelligent code completion, natural language to code translation, code explanation and documentation generation, bug detection and fixing suggestions, code refactoring recommendations, unit test generation, multiple programming languages support (Python, JavaScript, TypeScript, Java, C++), context-aware suggestions based on project structure, inline chat for coding questions, and code review assistance. Integrates with GitHub Copilot alternative",
+          he: "פיתחתי תוסף VS Code לסיוע קידוד מבוסס AI באמצעות OpenAI Codex ו-Claude. כולל השלמת קוד חכמה, תרגום שפה טבעית לקוד, הסבר קוד ויצירת תיעוד, זיהוי באגים והצעות תיקון, המלצות refactoring, יצירת unit tests, תמיכה במספר שפות תכנות (Python, JavaScript, TypeScript, Java, C++), הצעות מודעות הקשר על בסיס מבנה הפרויקט, צ'אט inline לשאלות קידוד וסיוע בסקירת קוד. אינטגרציה עם אלטרנטיבה ל-GitHub Copilot"
+        },
+        tech: ["TypeScript", "OpenAI", "VS Code API", "Node.js", "AI", "Git"],
+        gradient: "from-emerald-500 to-teal-600",
+        github: "https://github.com/matan4749/ai-code-assistant",
+        featured: true,
+      },
+      {
+        title: "Natural Language to SQL",
+        description: {
+          en: "Convert natural language queries to SQL with AI",
+          he: "המרת שאילתות בשפה טבעית ל-SQL עם AI"
+        },
+        fullDescription: {
+          en: "Built intelligent system that converts natural language questions to SQL queries using fine-tuned LLM models. Features include database schema understanding, complex query generation (joins, subqueries, aggregations), query optimization suggestions, SQL dialect support (PostgreSQL, MySQL, SQL Server), query explanation in natural language, result visualization with charts, query history and templates, support for multiple tables and relationships, error handling with correction suggestions, and API for integration with existing applications. Trained on WikiSQL and Spider datasets",
+          he: "בניתי מערכת חכמה הממירה שאלות בשפה טבעית לשאילתות SQL באמצעות מודלי LLM מכווננים. כולל הבנת schema של מסד נתונים, יצירת שאילתות מורכבות (joins, subqueries, aggregations), הצעות אופטימיזציה לשאילתות, תמיכה ב-SQL dialects (PostgreSQL, MySQL, SQL Server), הסבר שאילתה בשפה טבעית, ויזואליזציה של תוצאות עם גרפים, היסטוריה ותבניות שאילתות, תמיכה במספר טבלאות וקשרים, טיפול בשגיאות עם הצעות תיקון ו-API לאינטגרציה עם אפליקציות קיימות. אומן על WikiSQL ו-Spider datasets"
+        },
+        tech: ["Python", "LangChain", "OpenAI", "SQL", "PostgreSQL", "Streamlit", "Git"],
+        gradient: "from-yellow-500 to-orange-600",
+        github: "https://github.com/matan4749/nl-to-sql",
+        featured: true,
+      },
+      {
+        title: "AI Content Generator",
+        description: {
+          en: "Multi-purpose content creation with AI (blog, social media, marketing)",
+          he: "יצירת תוכן רב-תכליתי עם AI (בלוג, רשתות חברתיות, שיווק)"
+        },
+        fullDescription: {
+          en: "Created comprehensive AI content generation platform for marketing and social media. Features include blog post generation with SEO optimization, social media captions for multiple platforms (Instagram, Twitter, LinkedIn, Facebook), product descriptions, email marketing campaigns, ad copy generation, content rephrasing and improvement, tone adjustment (professional, casual, friendly, formal), keyword integration, plagiarism checking, content calendar planning, A/B testing suggestions, and analytics for content performance. Supports multiple languages and includes brand voice customization",
+          he: "יצרתי פלטפורמה מקיפה ליצירת תוכן AI לשיווק ורשתות חברתיות. כולל יצירת פוסטים לבלוג עם אופטימיזציית SEO, כיתובים לרשתות חברתיות למספר פלטפורמות (Instagram, Twitter, LinkedIn, Facebook), תיאורי מוצרים, קמפיינים של email marketing, יצירת copy לפרסומות, ניסוח מחדש ושיפור תוכן, התאמת tone (מקצועי, casual, ידידותי, רשמי), אינטגרציה של מילות מפתח, בדיקת plagiarism, תכנון לוח תוכן, הצעות A/B testing ו-analytics לביצועי תוכן. תומך במספר שפות וכולל התאמה אישית של brand voice"
+        },
+        tech: ["Python", "OpenAI", "React", "FastAPI", "SEO", "AI", "Git"],
+        gradient: "from-indigo-500 to-blue-600",
+        github: "https://github.com/matan4749/ai-content-generator",
+        featured: true,
+      },
+      {
+        title: "Computer Vision Object Detection",
+        description: {
+          en: "Real-time object detection and tracking with YOLO and OpenCV",
+          he: "זיהוי ומעקב אובייקטים בזמן אמת עם YOLO ו-OpenCV"
+        },
+        fullDescription: {
+          en: "Developed computer vision system for real-time object detection and tracking using YOLOv8, OpenCV, and TensorFlow. Features include detection of 80+ object classes, real-time video processing (webcam, video files, IP cameras), object tracking across frames, instance segmentation, pose estimation, face detection and recognition, license plate reading, custom model training, batch processing for images/videos, detection confidence adjustment, bounding box visualization with labels, and REST API for integration. Optimized for GPU acceleration with CUDA support",
+          he: "פיתחתי מערכת computer vision לזיהוי ומעקב אובייקטים בזמן אמת באמצעות YOLOv8, OpenCV ו-TensorFlow. כולל זיהוי של למעלה מ-80 מחלקות אובייקטים, עיבוד וידאו בזמן אמת (מצלמת אינטרנט, קבצי וידאו, מצלמות IP), מעקב אובייקטים בין פריימים, instance segmentation, pose estimation, זיהוי והכרת פנים, קריאת לוחיות רישוי, אימון מודל מותאם אישית, עיבוד אצווה לתמונות/וידאו, התאמת confidence לזיהוי, ויזואליזציה של bounding boxes עם תוויות ו-REST API לאינטגרציה. מותאם לאצה GPU עם תמיכת CUDA"
+        },
+        tech: ["Python", "YOLOv8", "OpenCV", "TensorFlow", "PyTorch", "Computer Vision", "Git"],
+        gradient: "from-red-500 to-pink-600",
+        github: "https://github.com/matan4749/cv-object-detection",
+        featured: true,
+      },
+      {
+        title: "ML Model Training Platform",
+        description: {
+          en: "AutoML platform for training and deploying machine learning models",
+          he: "פלטפורמת AutoML לאימון ופריסה של מודלי machine learning"
+        },
+        fullDescription: {
+          en: "Built comprehensive AutoML platform for end-to-end machine learning workflows. Features include automated data preprocessing (handling missing values, encoding, scaling), feature engineering and selection, algorithm selection and hyperparameter tuning with Optuna, model training for classification and regression tasks, model evaluation with cross-validation, ensemble methods, model explainability with SHAP values, experiment tracking with MLflow, model versioning and registry, automated deployment with FastAPI, real-time prediction API, monitoring and drift detection, and Jupyter notebook integration for exploration",
+          he: "בניתי פלטפורמת AutoML מקיפה לזרימות עבודה machine learning מקצה לקצה. כולל עיבוד מקדים אוטומטי של נתונים (טיפול בערכים חסרים, encoding, scaling), feature engineering ובחירה, בחירת אלגוריתם וכיוון hyperparameters עם Optuna, אימון מודל למשימות classification ו-regression, הערכת מודל עם cross-validation, שיטות ensemble, explainability של מודל עם ערכי SHAP, מעקב ניסויים עם MLflow, versioning ו-registry של מודלים, פריסה אוטומטית עם FastAPI, API לחיזוי בזמן אמת, ניטור וזיהוי drift ואינטגרציה של Jupyter notebook לחקירה"
+        },
+        tech: ["Python", "Scikit-learn", "MLflow", "Optuna", "FastAPI", "AutoML", "Git"],
+        gradient: "from-purple-500 to-indigo-600",
+        github: "https://github.com/matan4749/ml-training-platform",
+        featured: false,
+      },
+      {
+        title: "AI Recommendation Engine",
+        description: {
+          en: "Personalized recommendation system with collaborative filtering",
+          he: "מנוע המלצות מותאם אישית עם collaborative filtering"
+        },
+        fullDescription: {
+          en: "Developed sophisticated recommendation engine using multiple algorithms: collaborative filtering (user-based and item-based), content-based filtering, matrix factorization with SVD, deep learning with neural networks, and hybrid approaches. Features include real-time recommendations, cold start problem handling, A/B testing framework, diversity and serendipity optimization, explainable recommendations, scalability with Apache Spark, batch and streaming processing, recommendation API with caching, user preference learning, and analytics dashboard. Implemented for e-commerce, content streaming, and social platforms",
+          he: "פיתחתי מנוע המלצות מתוחכם באמצעות אלגוריתמים מרובים: collaborative filtering (מבוסס משתמש ומבוסס פריט), content-based filtering, matrix factorization עם SVD, deep learning עם רשתות נוירונים וגישות היברידיות. כולל המלצות בזמן אמת, טיפול ב-cold start problem, מסגרת A/B testing, אופטימיזציה של גיוון ו-serendipity, המלצות ניתנות להסבר, scalability עם Apache Spark, עיבוד אצווה ו-streaming, API המלצות עם caching, למידת העדפות משתמש ולוח בקרה analytics. מיושם עבור מסחר אלקטרוני, streaming תוכן ופלטפורמות חברתיות"
+        },
+        tech: ["Python", "TensorFlow", "Spark", "Redis", "Collaborative Filtering", "ML", "Git"],
+        gradient: "from-cyan-500 to-blue-600",
+        github: "https://github.com/matan4749/ai-recommendation-engine",
         featured: false,
       },
     ],
