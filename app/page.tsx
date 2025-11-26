@@ -161,21 +161,6 @@ export default function Home() {
         featured: true,
       },
       {
-        title: "Schovid",
-        description: {
-          en: "School management platform for students, parents, and teachers",
-          he: "פלטפורמת ניהול בית ספר לתלמידים, הורים ומורים"
-        },
-        fullDescription: {
-          en: "Created school management platform connecting students, parents, and teachers with role-based access control. Built features for schedules, grade tracking, assignments, and messaging with responsive UI for multiple devices",
-          he: "יצרתי פלטפורמת ניהול בית ספר שמחברת תלמידים, הורים ומורים עם בקרת גישה מבוססת תפקידים. בניתי תכונות למערכת שעות, מעקב ציונים, מטלות והודעות עם ממשק משתמש רספונסיבי למספר מכשירים"
-        },
-        tech: ["React", "Node.js", "MongoDB", "Git"],
-        gradient: "from-blue-500 to-purple-500",
-        github: "https://github.com/matan4749/Schovid",
-        featured: true,
-      },
-      {
         title: "Renovations",
         description: {
           en: "Modern business website with responsive design",
@@ -187,7 +172,7 @@ export default function Home() {
         },
         tech: ["HTML5", "CSS3", "JavaScript", "Git"],
         gradient: "from-purple-500 to-pink-500",
-        github: "https://github.com/matan4749/Renovations",
+        github: "https://github.com/matan4749/renovations",
         featured: true,
       },
       // Python Projects
