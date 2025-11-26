@@ -173,7 +173,7 @@ export default function Home() {
         tech: ["HTML5", "CSS3", "JavaScript", "Git"],
         gradient: "from-purple-500 to-pink-500",
         github: "https://github.com/matan4749/renovations",
-        featured: true,
+        featured: false,
       },
       // Python Projects
       {
@@ -219,7 +219,7 @@ export default function Home() {
         tech: ["Python", "SMTP", "Jinja2", "Git"],
         gradient: "from-red-500 to-pink-500",
         github: "https://github.com/matan4749/email-automation-tool",
-        featured: true,
+        featured: false,
       },
       {
         title: "Image Processing Studio",
@@ -234,7 +234,7 @@ export default function Home() {
         tech: ["Python", "PIL/Pillow", "Git"],
         gradient: "from-pink-500 to-purple-500",
         github: "https://github.com/matan4749/image-processing-studio",
-        featured: true,
+        featured: false,
       },
       {
         title: "Password Manager CLI",
@@ -281,7 +281,7 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "CSS3", "Git"],
         gradient: "from-violet-500 to-purple-500",
         github: "https://github.com/matan4749/calculator-js",
-        featured: true,
+        featured: false,
       },
       {
         title: "Todo List App",
@@ -296,7 +296,7 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "CSS3", "Git"],
         gradient: "from-emerald-500 to-teal-500",
         github: "https://github.com/matan4749/todo-list-app",
-        featured: true,
+        featured: false,
       },
       {
         title: "Weather App JS",
@@ -311,7 +311,7 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "API", "Git"],
         gradient: "from-sky-500 to-blue-500",
         github: "https://github.com/matan4749/weather-app-js",
-        featured: true,
+        featured: false,
       },
       {
         title: "Quiz App JS",
@@ -326,7 +326,7 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "CSS3", "Git"],
         gradient: "from-fuchsia-500 to-pink-500",
         github: "https://github.com/matan4749/quiz-app-js",
-        featured: true,
+        featured: false,
       },
       {
         title: "Timer App JS",
@@ -341,7 +341,7 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "CSS3", "Git"],
         gradient: "from-amber-500 to-orange-500",
         github: "https://github.com/matan4749/timer-app-js",
-        featured: true,
+        featured: false,
       },
     ],
   };
