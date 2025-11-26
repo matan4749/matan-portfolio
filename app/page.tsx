@@ -255,6 +255,21 @@ export default function Home() {
         github: "https://github.com/matan4749/react-ecommerce-store",
         featured: true,
       },
+      {
+        title: "E-Commerce Platform",
+        description: {
+          en: "Full-stack e-commerce platform with Stripe payments and real-time features",
+          he: "פלטפורמת מסחר אלקטרוני מלאה עם תשלומי Stripe ותכונות בזמן אמת"
+        },
+        fullDescription: {
+          en: "Built enterprise-grade full-stack e-commerce platform using React, TypeScript, Node.js, Express, PostgreSQL with Prisma ORM, and Redis caching. Features include JWT authentication with role-based access control, complete product catalog with search and filtering, shopping cart management, secure checkout with Stripe payment integration, order tracking and history, product reviews and ratings system, admin dashboard for product management, Redis caching for performance optimization, and Docker support for easy deployment. Implements RESTful API with comprehensive validation, real-time inventory management, and production-ready error handling",
+          he: "בניתי פלטפורמת מסחר אלקטרוני full-stack ברמה ארגונית באמצעות React, TypeScript, Node.js, Express, PostgreSQL עם Prisma ORM וcaching Redis. כולל אימות JWT עם בקרת גישה מבוססת תפקידים, קטלוג מוצרים מלא עם חיפוש וסינון, ניהול עגלת קניות, תשלום מאובטח עם אינטגרציה של Stripe, מעקב והיסטוריה של הזמנות, מערכת ביקורות ודירוגים למוצרים, לוח בקרה למנהל לניהול מוצרים, caching Redis לאופטימיזציה של ביצועים ותמיכה ב-Docker לפריסה קלה. מיישם RESTful API עם ולידציה מקיפה, ניהול מלאי בזמן אמת וטיפול בשגיאות מוכן לייצור"
+        },
+        tech: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "Redis", "Stripe", "JWT", "Docker", "Git"],
+        gradient: "from-violet-600 to-purple-600",
+        github: "https://github.com/matan4749/ecommerce-platform",
+        featured: true,
+      },
     ],
   };
 
