@@ -169,17 +169,12 @@ export default function Home() {
       },
       {
         name: "OpenAI",
-        icon: "devicon-openai-plain colored",
+        icon: "devicon-python-plain colored",
         category: "AI/ML",
       },
       {
         name: "LangChain",
         icon: "devicon-python-plain colored",
-        category: "AI/ML",
-      },
-      {
-        name: "Computer Vision",
-        icon: "devicon-opencv-plain colored",
         category: "AI/ML",
       },
     ],
