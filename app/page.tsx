@@ -97,14 +97,49 @@ export default function Home() {
         category: "Frontend",
       },
       {
+        name: "TypeScript",
+        icon: "devicon-typescript-plain colored",
+        category: "Frontend",
+      },
+      {
         name: "React",
         icon: "devicon-react-original colored",
+        category: "Frontend",
+      },
+      {
+        name: "Node.js",
+        icon: "devicon-nodejs-plain colored",
+        category: "Backend",
+      },
+      {
+        name: "Next.js",
+        icon: "devicon-nextjs-plain colored",
         category: "Frontend",
       },
       {
         name: "Unity",
         icon: "devicon-unity-plain colored",
         category: "Game Dev",
+      },
+      {
+        name: "Docker",
+        icon: "devicon-docker-plain colored",
+        category: "DevOps",
+      },
+      {
+        name: "SQL Server",
+        icon: "devicon-microsoftsqlserver-plain colored",
+        category: "Database",
+      },
+      {
+        name: "MongoDB",
+        icon: "devicon-mongodb-plain colored",
+        category: "Database",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "devicon-postgresql-plain colored",
+        category: "Database",
       },
       { name: "Git", icon: "devicon-git-plain colored", category: "Tools" },
       {
@@ -341,6 +376,193 @@ export default function Home() {
         tech: ["HTML5", "JavaScript", "CSS3", "Git"],
         gradient: "from-amber-500 to-orange-500",
         github: "https://github.com/matan4749/timer-app-js",
+        featured: false,
+      },
+      // C# Projects
+      {
+        title: "E-Commerce REST API",
+        description: {
+          en: "Professional REST API with ASP.NET Core and Entity Framework",
+          he: "REST API מקצועי עם ASP.NET Core ו-Entity Framework"
+        },
+        fullDescription: {
+          en: "Built enterprise-grade REST API using ASP.NET Core 8, Entity Framework Core, and SQL Server. Features JWT authentication, role-based authorization, product catalog with search and filtering, shopping cart, order management, payment integration (Stripe), and comprehensive Swagger documentation. Implements repository pattern, unit of work, and async operations for optimal performance",
+          he: "בניתי REST API ברמה ארגונית באמצעות ASP.NET Core 8, Entity Framework Core ו-SQL Server. כולל אימות JWT, הרשאות מבוססות תפקידים, קטלוג מוצרים עם חיפוש וסינון, עגלת קניות, ניהול הזמנות, אינטגרציה עם תשלומים (Stripe) ותיעוד Swagger מקיף. מיישם repository pattern, unit of work ופעולות אסינכרוניות לביצועים אופטימליים"
+        },
+        tech: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Git"],
+        gradient: "from-purple-600 to-blue-600",
+        github: "https://github.com/matan4749/ecommerce-api-dotnet",
+        featured: true,
+      },
+      {
+        title: "WPF Task Manager Pro",
+        description: {
+          en: "Advanced desktop task manager with MVVM architecture",
+          he: "מנהל משימות שולחני מתקדם עם ארכיטקטורת MVVM"
+        },
+        fullDescription: {
+          en: "Created professional desktop application using WPF and MVVM pattern. Features include task management with categories, priorities, and deadlines, SQLite database with Entity Framework Core, real-time notifications, drag-and-drop interface, data visualization with charts, export to Excel/PDF, dark/light themes, and keyboard shortcuts. Implements INotifyPropertyChanged, commands, and dependency injection",
+          he: "יצרתי אפליקציית שולחן עבודה מקצועית באמצעות WPF ותבנית MVVM. כולל ניהול משימות עם קטגוריות, עדיפויות ומועדי יעד, מסד נתונים SQLite עם Entity Framework Core, התראות בזמן אמת, ממשק drag-and-drop, ויזואליזציה של נתונים עם גרפים, ייצוא ל-Excel/PDF, ערכות נושא כהה/בהירה וקיצורי מקלדת. מיישם INotifyPropertyChanged, commands ו-dependency injection"
+        },
+        tech: ["C#", "WPF", "MVVM", "Entity Framework", "SQLite", "Git"],
+        gradient: "from-indigo-600 to-purple-600",
+        github: "https://github.com/matan4749/wpf-task-manager",
+        featured: true,
+      },
+      {
+        title: "Real-Time Chat Server",
+        description: {
+          en: "WebSocket chat server with SignalR and Redis",
+          he: "שרת צ'אט בזמן אמת עם SignalR ו-Redis"
+        },
+        fullDescription: {
+          en: "Developed scalable real-time chat server using SignalR, ASP.NET Core, and Redis. Features include multiple chat rooms, private messaging, online presence indicators, typing indicators, message history with pagination, file sharing, emoji support, and user authentication. Implements Redis backplane for horizontal scaling, supports thousands of concurrent connections, and includes message encryption for security",
+          he: "פיתחתי שרת צ'אט בזמן אמת ברמת scale באמצעות SignalR, ASP.NET Core ו-Redis. כולל מספר חדרי צ'אט, הודעות פרטיות, אינדיקטורים של נוכחות מקוונת, אינדיקטורים של הקלדה, היסטוריית הודעות עם עימוד, שיתוף קבצים, תמיכה באימוג'י ואימות משתמשים. מיישם Redis backplane להרחבה אופקית, תומך באלפי חיבורים במקביל וכולל הצפנת הודעות לאבטחה"
+        },
+        tech: ["C#", "SignalR", "ASP.NET Core", "Redis", "WebSocket", "Git"],
+        gradient: "from-green-600 to-teal-600",
+        github: "https://github.com/matan4749/realtime-chat-signalr",
+        featured: true,
+      },
+      {
+        title: "Microservices E-Commerce Platform",
+        description: {
+          en: "Microservices architecture with Docker and RabbitMQ",
+          he: "ארכיטקטורת Microservices עם Docker ו-RabbitMQ"
+        },
+        fullDescription: {
+          en: "Built complete microservices-based e-commerce platform with 6 independent services: API Gateway (Ocelot), Product Service, Order Service, Payment Service, Notification Service, and User Service. Each service has its own database (polyglot persistence), communicates via RabbitMQ message bus, and runs in Docker containers. Includes service discovery, circuit breaker pattern (Polly), distributed logging (Serilog), health checks, and monitoring dashboard",
+          he: "בניתי פלטפורמת מסחר אלקטרוני מלאה מבוססת microservices עם 6 שירותים עצמאיים: API Gateway (Ocelot), שירות מוצרים, שירות הזמנות, שירות תשלומים, שירות התראות ושירות משתמשים. לכל שירות מסד נתונים משלו (polyglot persistence), מתקשרים דרך RabbitMQ message bus ורצים בקונטיינרים של Docker. כולל service discovery, circuit breaker pattern (Polly), distributed logging (Serilog), health checks ולוח בקרה לניטור"
+        },
+        tech: ["C#", "Microservices", "Docker", "RabbitMQ", "PostgreSQL", "Git"],
+        gradient: "from-blue-600 to-cyan-600",
+        github: "https://github.com/matan4749/microservices-ecommerce",
+        featured: true,
+      },
+      // Unity Projects
+      {
+        title: "Pixel Adventure - 2D Platformer",
+        description: {
+          en: "Professional 2D platformer game with physics and animations",
+          he: "משחק פלטפורמר 2D מקצועי עם פיזיקה ואנימציות"
+        },
+        fullDescription: {
+          en: "Created complete 2D platformer game using Unity with 15+ levels, custom physics system, character animations (idle, run, jump, attack), enemy AI with patrol and chase behaviors, collectible items and power-ups, boss battles, checkpoint system, parallax scrolling backgrounds, particle effects, and sound design. Implements state machine for character controller, object pooling for performance, and save/load system",
+          he: "יצרתי משחק פלטפורמר 2D מלא באמצעות Unity עם למעלה מ-15 שלבים, מערכת פיזיקה מותאמת אישית, אנימציות דמות (idle, run, jump, attack), AI אויבים עם התנהגויות סיור ומרדף, פריטים לאיסוף ו-power-ups, קרבות בוס, מערכת checkpoints, רקעים עם parallax scrolling, אפקטי חלקיקים ועיצוב קול. מיישם state machine לבקר דמות, object pooling לביצועים ומערכת save/load"
+        },
+        tech: ["Unity", "C#", "2D Physics", "Animation", "Git"],
+        gradient: "from-red-500 to-orange-500",
+        github: "https://github.com/matan4749/pixel-adventure-unity",
+        featured: true,
+      },
+      {
+        title: "Mystery Manor - 3D Puzzle Adventure",
+        description: {
+          en: "3D adventure game with puzzles, AI, and inventory system",
+          he: "משחק הרפתקאות 3D עם פאזלים, AI ומערכת תיק"
+        },
+        fullDescription: {
+          en: "Developed 3D puzzle adventure game featuring exploration-based gameplay, 10+ unique puzzles (logic, physics, pattern), advanced AI enemies with A* pathfinding and behavior trees, interactive object system, inventory management with drag-and-drop, dialogue system with branching conversations, quest system, day/night cycle, post-processing effects, and cinematic cutscenes. Built with Universal Render Pipeline for optimized graphics",
+          he: "פיתחתי משחק הרפתקאות פאזלים 3D הכולל משחקיות מבוססת חקירה, למעלה מ-10 פאזלים ייחודיים (לוגיקה, פיזיקה, תבניות), אויבי AI מתקדמים עם A* pathfinding ו-behavior trees, מערכת אובייקטים אינטראקטיביים, ניהול תיק עם drag-and-drop, מערכת דיאלוג עם שיחות מסועפות, מערכת משימות, מחזור יום/לילה, אפקטי post-processing וסצנות קולנועיות. נבנה עם Universal Render Pipeline לגרפיקה מיטבית"
+        },
+        tech: ["Unity", "C#", "3D Graphics", "AI", "Pathfinding", "Git"],
+        gradient: "from-purple-500 to-indigo-600",
+        github: "https://github.com/matan4749/mystery-manor-unity",
+        featured: true,
+      },
+      {
+        title: "AR Math Explorer",
+        description: {
+          en: "AR educational app for interactive math learning",
+          he: "אפליקציית AR חינוכית ללמידת מתמטיקה אינטראקטיבית"
+        },
+        fullDescription: {
+          en: "Built augmented reality educational app using AR Foundation for iOS/Android. Features 3D math visualizations (geometry, fractions, graphs), interactive AR exercises, real-world problem solving with AR objects, progress tracking and achievements, voice feedback, multi-language support, and teacher dashboard. Implements plane detection, image tracking, and gesture recognition for intuitive AR interactions",
+          he: "בניתי אפליקציה חינוכית במציאות רבודה באמצעות AR Foundation ל-iOS/Android. כולל ויזואליזציות מתמטיות תלת-ממדיות (גיאומטריה, שברים, גרפים), תרגילי AR אינטראקטיביים, פתרון בעיות מהעולם האמיתי עם אובייקטי AR, מעקב אחר התקדמות והישגים, משוב קולי, תמיכה במספר שפות ולוח בקרה למורים. מיישם plane detection, image tracking וזיהוי מחוות לאינטראקציות AR אינטואיטיביות"
+        },
+        tech: ["Unity", "C#", "AR Foundation", "Mobile", "Git"],
+        gradient: "from-cyan-500 to-blue-600",
+        github: "https://github.com/matan4749/ar-math-explorer",
+        featured: true,
+      },
+      // TypeScript Project
+      {
+        title: "TaskFlow - Project Management Dashboard",
+        description: {
+          en: "Professional task management dashboard with TypeScript and React",
+          he: "לוח ניהול משימות מקצועי עם TypeScript ו-React"
+        },
+        fullDescription: {
+          en: "Created enterprise-grade project management dashboard using TypeScript, React 18, Redux Toolkit, and Material-UI. Features include kanban boards with drag-and-drop, Gantt charts, time tracking, team collaboration, real-time updates via WebSocket, file attachments, notifications, advanced filtering and search, custom reports with charts, dark/light themes, and keyboard shortcuts. Fully typed with TypeScript for type safety and IntelliSense support",
+          he: "יצרתי לוח ניהול פרויקטים ברמה ארגונית באמצעות TypeScript, React 18, Redux Toolkit ו-Material-UI. כולל לוחות kanban עם drag-and-drop, תרשימי Gantt, מעקב זמן, שיתוף פעולה צוותי, עדכונים בזמן אמת דרך WebSocket, קבצים מצורפים, התראות, סינון וחיפוש מתקדמים, דוחות מותאמים אישית עם גרפים, ערכות נושא כהה/בהירה וקיצורי מקלדת. מוקלד במלואו עם TypeScript לבטיחות טיפוסים ותמיכת IntelliSense"
+        },
+        tech: ["TypeScript", "React", "Redux", "Material-UI", "WebSocket", "Git"],
+        gradient: "from-blue-600 to-indigo-600",
+        github: "https://github.com/matan4749/taskflow-dashboard",
+        featured: true,
+      },
+      // Node.js Project
+      {
+        title: "SocialHub - Social Media API",
+        description: {
+          en: "RESTful social media API with Node.js and MongoDB",
+          he: "RESTful API למדיה חברתית עם Node.js ו-MongoDB"
+        },
+        fullDescription: {
+          en: "Developed comprehensive social media backend API using Node.js, Express, MongoDB, and Socket.io. Features include user authentication with JWT and OAuth (Google, Facebook), posts with images/videos, comments and nested replies, likes and reactions, follow/unfollow system, news feed algorithm, real-time chat and notifications, story features (24h expiry), hashtags and trending topics, content moderation, and rate limiting. Implements caching with Redis, image processing with Sharp, and file storage with AWS S3",
+          he: "פיתחתי API backend מקיף למדיה חברתית באמצעות Node.js, Express, MongoDB ו-Socket.io. כולל אימות משתמשים עם JWT ו-OAuth (Google, Facebook), פוסטים עם תמונות/סרטונים, תגובות ותשובות מקוננות, לייקים ותגובות, מערכת עוקבים/הפסקת מעקב, אלגוריתם עדכוני חדשות, צ'אט והתראות בזמן אמת, תכונות story (תפוגה 24 שעות), האשטאגים ונושאים טרנדים, ניהול תוכן ו-rate limiting. מיישם caching עם Redis, עיבוד תמונות עם Sharp ואחסון קבצים עם AWS S3"
+        },
+        tech: ["Node.js", "Express", "MongoDB", "Socket.io", "JWT", "Git"],
+        gradient: "from-green-500 to-emerald-600",
+        github: "https://github.com/matan4749/socialhub-api",
+        featured: true,
+      },
+      // Next.js Project
+      {
+        title: "DevBlog - Modern Blog Platform",
+        description: {
+          en: "Full-stack blog platform with Next.js and PostgreSQL",
+          he: "פלטפורמת בלוג full-stack עם Next.js ו-PostgreSQL"
+        },
+        fullDescription: {
+          en: "Built modern blog platform using Next.js 14 with App Router, TypeScript, Prisma ORM, and PostgreSQL. Features include server-side rendering and static generation, MDX support for rich content, syntax highlighting for code blocks, image optimization, SEO optimization with metadata, comment system, user authentication with NextAuth, admin dashboard for content management, categories and tags, search functionality, RSS feed, sitemap generation, responsive design, and analytics integration. Deployed on Vercel with edge functions",
+          he: "בניתי פלטפורמת בלוג מודרנית באמצעות Next.js 14 עם App Router, TypeScript, Prisma ORM ו-PostgreSQL. כולל server-side rendering ו-static generation, תמיכה ב-MDX לתוכן עשיר, הדגשת תחביר לבלוקים של קוד, אופטימיזציה של תמונות, אופטימיזציית SEO עם metadata, מערכת תגובות, אימות משתמשים עם NextAuth, לוח בקרה למנהל לניהול תוכן, קטגוריות ותגים, פונקציונליות חיפוש, RSS feed, יצירת sitemap, עיצוב רספונסיבי ואינטגרציה עם analytics. נפרס ב-Vercel עם edge functions"
+        },
+        tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Git"],
+        gradient: "from-slate-600 to-gray-700",
+        github: "https://github.com/matan4749/devblog-nextjs",
+        featured: true,
+      },
+      // SQL Project
+      {
+        title: "Advanced Database Management System",
+        description: {
+          en: "Complex SQL database with stored procedures and triggers",
+          he: "מסד נתונים SQL מורכב עם stored procedures וטריגרים"
+        },
+        fullDescription: {
+          en: "Designed and implemented comprehensive database system for enterprise resource planning (ERP). Includes 30+ normalized tables with proper relationships, complex queries with joins and subqueries, stored procedures for business logic, triggers for data integrity, views for reporting, indexes for performance optimization, full-text search, transaction management with ACID properties, backup and recovery procedures, and user roles with permissions. Features inventory management, order processing, customer relationship management, and financial reporting modules",
+          he: "תכננתי ויישמתי מערכת מסד נתונים מקיפה לתכנון משאבי ארגון (ERP). כולל למעלה מ-30 טבלאות מנורמלות עם קשרים תקינים, שאילתות מורכבות עם joins ו-subqueries, stored procedures ללוגיקה עסקית, triggers לשלמות נתונים, views לדיווח, אינדקסים לאופטימיזציה של ביצועים, חיפוש טקסט מלא, ניהול transactions עם תכונות ACID, נוהלי גיבוי ושחזור ותפקידי משתמש עם הרשאות. כולל מודולים לניהול מלאי, עיבוד הזמנות, ניהול קשרי לקוחות ודיווח פיננסי"
+        },
+        tech: ["SQL Server", "T-SQL", "Database Design", "Stored Procedures", "Git"],
+        gradient: "from-orange-600 to-red-600",
+        github: "https://github.com/matan4749/advanced-database-system",
+        featured: false,
+      },
+      // Docker Project
+      {
+        title: "Full-Stack Containerized Application",
+        description: {
+          en: "Multi-container application with Docker Compose and CI/CD",
+          he: "אפליקציה מרובת קונטיינרים עם Docker Compose ו-CI/CD"
+        },
+        fullDescription: {
+          en: "Built production-ready containerized application using Docker and Docker Compose with 7 services: React frontend, Node.js backend API, PostgreSQL database, Redis cache, Nginx reverse proxy, Elasticsearch for search, and Kibana for monitoring. Includes multi-stage Docker builds for optimization, environment-specific configurations, health checks, auto-restart policies, volume management for data persistence, networking configuration, and GitHub Actions CI/CD pipeline for automated testing and deployment. Implements container orchestration best practices and security hardening",
+          he: "בניתי אפליקציה מוכנה לייצור מבוססת קונטיינרים באמצעות Docker ו-Docker Compose עם 7 שירותים: frontend React, backend API Node.js, מסד נתונים PostgreSQL, cache Redis, Nginx reverse proxy, Elasticsearch לחיפוש ו-Kibana לניטור. כולל Docker builds רב-שלביים לאופטימיזציה, תצורות ספציפיות לסביבה, health checks, מדיניות auto-restart, ניהול volumes לשימור נתונים, תצורת רשת וצינור CI/CD של GitHub Actions לבדיקה ופריסה אוטומטיות. מיישם שיטות עבודה מומלצות לתזמור קונטיינרים וחיזוק אבטחה"
+        },
+        tech: ["Docker", "Docker Compose", "CI/CD", "Nginx", "Linux", "Git"],
+        gradient: "from-blue-500 to-cyan-500",
+        github: "https://github.com/matan4749/docker-fullstack-app",
         featured: false,
       },
     ],
