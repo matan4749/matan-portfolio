@@ -20,20 +20,20 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "Matan Amar - Software Engineer & RPA Specialist",
+  title: "מתן עמר - מהנדס תוכנה",
   description: "Portfolio of Matan Amar - Software Engineer specializing in RPA, Unity development, and full-stack applications.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Matan Amar",
+    title: "מתן עמר",
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: "website",
-    siteName: "Matan Amar Portfolio",
-    title: "Matan Amar - Software Engineer & RPA Specialist",
+    siteName: "מתן עמר - מהנדס תוכנה",
+    title: "מתן עמר - מהנדס תוכנה",
     description: "Portfolio of Matan Amar - Software Engineer specializing in RPA, Unity development, and full-stack applications.",
   },
   icons: {
