@@ -169,7 +169,7 @@ export default function Home() {
       },
       {
         name: "OpenAI",
-        icon: "https://cdn.simpleicons.org/openai/412991",
+        icon: "/openai.svg",
         category: "AI/ML",
       },
       {
