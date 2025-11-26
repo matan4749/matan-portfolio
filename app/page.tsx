@@ -169,7 +169,7 @@ export default function Home() {
       },
       {
         name: "OpenAI",
-        icon: "devicon-python-plain colored",
+        icon: "https://cdn.simpleicons.org/openai/412991",
         category: "AI/ML",
       },
       {
@@ -1110,7 +1110,11 @@ ${cvKnowledge.skills.map((s) => `• ${s.name} (${s.category})`).join("\n")}
               >
                 <div className="flex flex-col items-center gap-4">
                   <div className="tech-icon">
-                    <i className={`${skill.icon} text-6xl`}></i>
+                    {skill.icon.startsWith('http') ? (
+                      <img src={skill.icon} alt={skill.name} className="w-16 h-16" />
+                    ) : (
+                      <i className={`${skill.icon} text-6xl`}></i>
+                    )}
                   </div>
                   <div className="text-center">
                     <div className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
